@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tommaso</title>
+  <meta name="description" content="Ristorante Bella Vita — authentic Italian cuisine, handcrafted pasta, wood-fired pizzas, and an intimate atmosphere." />
+  <!-- Tailwind via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--brand:#8B1E11}
+    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    h1,h2,h3{font-family:'Playfair Display', serif}
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+  <!-- Header / Nav -->
+  <header class="bg-white shadow-sm sticky top-0 z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="#home" class="flex items-center gap-3"> 
+          <div class="w-12 h-12 rounded-md bg-[var(--brand)] flex items-center justify-center text-white font-bold">TM</div>
+          <div>
+            <div class="text-lg font-semibold">Tommaso</div>
+            <div class="text-xs text-gray-500">Authentic Italian • Since 1972</div>
+          </div>
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#menu" class="hover:text-[var(--brand)]">Menu</a>
+          <a href="#about" class="hover:text-[var(--brand)]">About</a>
+          <a href="#gallery" class="hover:text-[var(--brand)]">Gallery</a>
+          <a href="#contact" class="hover:text-[var(--brand)]">Contact</a>
+          <a href="#reserve" class="bg-[var(--brand)] text-white px-4 py-2 rounded-md shadow hover:opacity-95">Reserve</a>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button id="mobileBtn" aria-label="Open menu" class="p-2 rounded-md hover:bg-gray-100">
+            <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile nav -->
+    <div id="mobileMenu" class="md:hidden hidden border-t">
+      <div class="px-4 py-4 flex flex-col gap-3">
+        <a href="#menu" class="block">Menu</a>
+        <a href="#about" class="block">About</a>
+        <a href="#gallery" class="block">Gallery</a>
+        <a href="#contact" class="block">Contact</a>
+        <a href="#reserve" class="block bg-[var(--brand)] text-white text-center py-2 rounded-md">Reserve</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home">
+    <section class="relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center py-16">
+          <div>
+            <h1 class="text-4xl sm:text-5xl font-bold leading-tight">Taste the heart of Italy in every bite</h1>
+            <p class="mt-4 text-gray-600">Discover the heart of Italian dining with fresh, handmade pasta, vibrant seasonal ingredients, and timeless recipes passed down through generations. Paired with a curated wine list and warm hospitality, every meal is crafted to transport you straight to Italy. Perfect for a romantic evening, family dinner, or special celebration.</p>
+
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="#menu" class="px-5 py-3 border rounded-md border-[var(--brand)] text-[var(--brand)] hover:bg-[var(--brand)] hover:text-white">View Menu</a>
+              <a href="#reserve" class="px-5 py-3 bg-[var(--brand)] text-white rounded-md">Reserve a Table</a>
+            </div>
+
+            <ul class="mt-6 text-sm text-gray-500 space-y-2">
+              <li><strong>Phone:</strong> (718) 484-0028</li>
+              <li><strong>Hours:</strong> Tue–Sun 12:00 PM — 10:00 PM</li>
+              <li><strong>Location:</strong> 6916 18th Ave, Brooklyn, NY 11204</li>
+            </ul>
+          </div>
+
+          <div class="rounded-xl overflow-hidden shadow-lg">
+            <img src="main1.jpg" alt="Wood-fired pizza and rustic pasta on a table" class="w-full h-100 object-cover">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features / Promise -->
+    <section class="bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+          <div>
+            <h3 class="text-lg font-medium">Handmade Pasta</h3>
+            <p class="mt-2 text-sm text-gray-500">Small-batch pasta made daily by our chefs.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-medium">Wood-Fired Oven</h3>
+            <p class="mt-2 text-sm text-gray-500">Authentic wood-fired pizzas with blistered crusts.</p>
+          </div>
+          <div>
+            <h3 class="text-lg font-medium">Curated Wine List</h3>
+            <p class="mt-2 text-sm text-gray-500">Italian wines selected to pair perfectly with each dish.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu preview -->
+    <section id="menu" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold">Menu Highlights</h2>
+        <a href="#" class="text-sm text-[var(--brand)] hover:underline">Full menu (PDF)</a>
+      </div>
+
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="p-4 bg-white rounded-lg shadow">
+          <h3 class="font-semibold">Antipasti</h3>
+          <ul class="mt-3 space-y-3 text-sm text-gray-600">
+            <li><strong>Bruschetta al Pomodoro</strong> — grilled bread, roma tomatoes, basil • $12</li>
+            <li><strong>Calamari Fritti</strong> — lemon aioli • $15</li>
+            <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          </ul>
+        </article>
+
+        <article class="p-4 bg-white rounded-lg shadow">
+          <h3 class="font-semibold">Paste</h3>
+          <ul class="mt-3 space-y-3 text-sm text-gray-600">
+            <li><strong>Tagliatelle Bolognese</strong> — slow-ragu, parmigiano • $22</li>
+            <li><strong>Gnocchi al Pesto</strong> — basil pesto, pine nuts • $20</li>
+            <li><strong>Spaghetti alle Vongole</strong> — clams, garlic, white wine • $24</li>
+          </ul>
+        </article>
+
+        <article class="p-4 bg-white rounded-lg shadow">
+          <h3 class="font-semibold">Pizze</h3>
+          <ul class="mt-3 space-y-3 text-sm text-gray-600">
+            <li><strong>Margherita</strong> — tomato, fior di latte, basil • $18</li>
+            <li><strong>Salsiccia e Funghi</strong> — fennel sausage, mushrooms • $20</li>
+            <li><strong>Quattro Formaggi</strong> — four-cheese blend • $21</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a href="#reserve" class="inline-block bg-[var(--brand)] text-white px-6 py-3 rounded-md">Make a Reservation</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="bg-white border-t">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+        <h2 class="text-2xl font-bold">Our Story</h2>
+        <p class="mt-4 text-gray-600">A mother lost, but found, by continuing her joy in cooking, feeding, and sharing love& care through food. My early years were spent helping my mother prepare dinner for her doctor and nurse friends, as well as arranging holiday banquets for friends and family. The fondest memories I have are going to Coney Island with my older brothers and having lunch, usually pepper and egg sandwiches prepared by my Mother. We grew up across from the railroad and at that time we saw many young men going off to fight in the Korean War. With delight, my Mother prepared Meatball, Broccoli Rape & Sausage heroes for the boys on the way to war.— Tommaso’s on 61st street?
+
+It has been a long journey for me, some of the highlights include, four years of studying classic cooking in school, apprenticeship at the 21 club, and a summer cooking in the mountains of upstate New York. Also, I spent six months working for Air Lacarte at JFK airport and did a six year stint at Jacques Caterers, a Brooklyn landmark. Eventually I became chef in charge of their catering hall with three banquet rooms.
+
+I think traveling is important. I studied for one month at a fine Piedmontese restaurant in Albaretto della Torre. I continue to travel the world eating at the best in show, as well as advant- garde restaurants, always in learning mode.
+
+At Tommaso we use only the finest produce being as true to traditions as well as open to all influences of worth. But most of all, I subscribe to my Mother’s basic instinct to share with joy and integrity to others one own understanding of what’s worthwhile in life. No corporate restaurant here!</p>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <h2 class="text-2xl font-bold">Gallery</h2>
+      <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img src="https://images.unsplash.com/photo-1525610553991-2bede1a236e2?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Chef plating pasta" class="w-full h-40 object-cover rounded-lg">
+        <img src="https://images.unsplash.com/photo-1548946526-f69e2424cf45?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Interior dining room" class="w-full h-40 object-cover rounded-lg">
+        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Handmade pasta" class="w-full h-40 object-cover rounded-lg">
+        <img src="https://images.unsplash.com/photo-1512058564366-c9e3df1f1a6b?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder" alt="Wood fire oven pizza" class="w-full h-40 object-cover rounded-lg">
+      </div>
+    </section>
+
+    <!-- Reservation / Contact -->
+    <section id="reserve" class="bg-[var(--brand)] text-white py-12">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h2 class="text-2xl font-bold">Reserve a Table</h2>
+          <p class="mt-2 text-gray-100 text-sm">We recommend reserving ahead for evenings and weekends. Call us or use the form.</p>
+
+          <ul class="mt-4 text-sm space-y-2">
+            <li><strong>Phone:</strong>  (718) 484-0028</li>
+            <li><strong>Address:</strong> 6916 18th Ave, Brooklyn, NY 11204</li>
+            <li><strong>Hours:</strong> Tue–Sun 12:00 PM — 10:00 PM</li>
+          </ul>
+        </div>
+
+        <form class="bg-white text-gray-800 p-4 rounded-lg shadow" onsubmit="event.preventDefault(); alert('Reservation request sent! (demo)')">
+          <div class="grid grid-cols-1 gap-3">
+            <input required placeholder="Full name" class="px-3 py-2 border rounded-md" />
+            <input required type="tel" placeholder="Phone or email" class="px-3 py-2 border rounded-md" />
+            <div class="flex gap-3">
+              <input required type="date" class="px-3 py-2 border rounded-md w-1/2" />
+              <input required type="time" class="px-3 py-2 border rounded-md w-1/2" />
+            </div>
+            <select class="px-3 py-2 border rounded-md">
+              <option>2 people</option>
+              <option>4 people</option>
+              <option>6 people</option>
+              <option>8+ people</option>
+            </select>
+            <textarea placeholder="Special requests (allergies, celebrations)" rows="3" class="px-3 py-2 border rounded-md"></textarea>
+            <button class="bg-[var(--brand)] text-white px-4 py-2 rounded-md">Request Reservation</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-2xl font-bold">Contact & Location</h2>
+          <p class="mt-3 text-gray-600">Have a question? Drop us a line or find us on the map.</p>
+
+          <address class="not-italic mt-4 text-sm text-gray-600">
+            Tommaso<br>
+            6916 18th Ave, Brooklyn, NY 11204<br>
+            Phone: (718) 484-0028
+          </address>
+
+          <div class="mt-4">
+            <!-- Placeholder for an embed map -->
+            <div class="w-full h-48 bg-gray-200 rounded-md flex items-center justify-center text-sm text-gray-500"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6057.200799636488!2d-73.99568792411331!3d40.61663934344834!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2456d9718d2c1%3A0xdd7a232fe5a89033!2sTommaso!5e0!3m2!1sen!2sus!4v1756575539808!5m2!1sen!2sus" width="600" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+          </div>
+        </div>
+
+        <form onsubmit="event.preventDefault(); alert('Message sent! (demo)')" class="bg-white p-4 rounded-lg shadow">
+          <label class="block text-sm">Name<input required class="w-full mt-1 px-3 py-2 border rounded-md" /></label>
+          <label class="block text-sm mt-3">Email<input required type="email" class="w-full mt-1 px-3 py-2 border rounded-md" /></label>
+          <label class="block text-sm mt-3">Message<textarea required class="w-full mt-1 px-3 py-2 border rounded-md" rows="4"></textarea></label>
+          <div class="mt-3 text-right">
+            <button class="bg-[var(--brand)] text-white px-4 py-2 rounded-md">Send Message</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <div class="text-white font-semibold">Ristorante Bella Vita</div>
+          <div class="text-sm mt-1">© "Bella Vita" — All rights reserved</div>
+        </div>
+        <div class="text-sm">Follow us
+          <a href="#" class="ml-3 hover:text-white">Instagram</a>
+          <a href="#" class="ml-3 hover:text-white">Facebook</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const mobileBtn = document.getElementById('mobileBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', ()=>{
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
