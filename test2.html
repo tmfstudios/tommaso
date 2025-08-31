@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    :root{--brand:#8B1E11}
+    :root{--brand:#1C1C84}
     body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
     h1,h2,h3{font-family:'Playfair Display', serif}
   </style>
@@ -94,41 +94,108 @@
         <a href="#" class="text-sm text-[var(--brand)] hover:underline">Full menu (PDF)</a>
       </div>
 
-      <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <article class="p-4 bg-white rounded-lg shadow">
-          <h3 class="font-semibold">Appetizers</h3>
-          <ul class="mt-3 space-y-3 text-sm text-gray-600">
-            <li><strong>Baked Clams (8)</strong> — little necks, oreganata • $14</li>
-            <li><strong>Baby Meatballs</strong> — beef & pork blend, tomato sauce • $14</li>
-            <li><strong>Stuffed Mushrooms</strong> — breadcrumbs, swiss cheese, and marai • $14</li>
-            <li><strong>Baked Clams (8)</strong> — little necks, oreganata • $14</li>
-            <li><strong>Baked Clams (8)</strong> — little necks, oreganata • $14</li>
-            <li><strong>Baked Clams (8)</strong> — little necks, oreganata • $14</li>
-            <li><strong>Baked Clams (8)</strong> — little necks, oreganata • $14</li>
-            <li><strong>Baked Clams (8)</strong> — little necks, oreganata • $14</li>
-            <li><strong>Calamari Fritti</strong> — lemon aioli • $15</li>
-            <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
-          </ul>
-        </article>
 
-        <article class="p-4 bg-white rounded-lg shadow">
-          <h3 class="font-semibold">Paste</h3>
-          <ul class="mt-3 space-y-3 text-sm text-gray-600">
-            <li><strong>Tagliatelle Bolognese</strong> — slow-ragu, parmigiano • $22</li>
-            <li><strong>Gnocchi al Pesto</strong> — basil pesto, pine nuts • $20</li>
-            <li><strong>Spaghetti alle Vongole</strong> — clams, garlic, white wine • $24</li>
-          </ul>
-        </article>
-
-        <article class="p-4 bg-white rounded-lg shadow">
-          <h3 class="font-semibold">Pizze</h3>
-          <ul class="mt-3 space-y-3 text-sm text-gray-600">
-            <li><strong>Margherita</strong> — tomato, fior di latte, basil • $18</li>
-            <li><strong>Salsiccia e Funghi</strong> — fennel sausage, mushrooms • $20</li>
-            <li><strong>Quattro Formaggi</strong> — four-cheese blend • $21</li>
-          </ul>
-        </article>
+  <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Collapsible card -->
+    <article class="p-4 bg-white rounded-lg shadow">
+      <button class="collapsible w-full text-left font-semibold flex justify-between items-center" aria-expanded="false">
+        <h3>Appetizers</h3>
+        <span class="chev">▸</span>
+      </button>
+      <div class="content-wrapper">
+        <ul class="mt-3 space-y-3 text-sm text-gray-600">
+          <li><strong>Bakes Clams (8)</strong> — little necks, oreganata • $14</li>
+          <li><strong>Calamari Fritti</strong> — lemon aioli • $15</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+          <li><strong>Prosciutto e Melone</strong> — seasonal fruit • $16</li>
+        </ul>
       </div>
+    </article>
+
+    <article class="p-4 bg-white rounded-lg shadow">
+      <button class="collapsible w-full text-left font-semibold flex justify-between items-center" aria-expanded="false">
+        <h3>Pasta</h3>
+        <span class="chev">▸</span>
+      </button>
+      <div class="content-wrapper">
+        <ul class="mt-3 space-y-3 text-sm text-gray-600">
+          <li><strong>Tagliatelle Bolognese</strong> — slow-ragu, parmigiano • $22</li>
+          <li><strong>Gnocchi al Pesto</strong> — basil pesto, pine nuts • $20</li>
+          <li><strong>Spaghetti alle Vongole</strong> — clams, garlic, white wine • $24</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="p-4 bg-white rounded-lg shadow">
+      <button class="collapsible w-full text-left font-semibold flex justify-between items-center" aria-expanded="false">
+        <h3>Main Course</h3>
+        <span class="chev">▸</span>
+      </button>
+      <div class="content-wrapper">
+        <ul class="mt-3 space-y-3 text-sm text-gray-600">
+          <li><strong>Osso Buco</strong> — braised veal shanks, gremolata, risotto • $28</li>
+          <li><strong>Pollo alla Cacciatora</strong> — chicken, tomatoes, olives, herbs • $22</li>
+          <li><strong>Branzino al Forno</strong> — roasted Mediterranean sea bass, lemon, capers • $32</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+
+  <!-- Inline CSS for collapse behaviour (put in <head> or a stylesheet) -->
+  <style>
+    .collapsible { background: transparent; border: none; padding: 0.25rem 0; cursor: pointer; font-size: 1rem; }
+    .collapsible .chev { transition: transform .25s ease; }
+    .content-wrapper { 
+      max-height: 0; 
+      overflow: hidden; 
+      transition: max-height .35s ease; 
+    }
+    /* When open, rotate chevron */
+    .collapsible[aria-expanded="true"] .chev { transform: rotate(90deg); }
+    /* small spacing tweak so content sits nicely */
+    .content-wrapper > ul { margin: .75rem 0 0 0; padding: 0; }
+  </style>
+
+  <!-- Inline JS to toggle sections (put at bottom of page before </body>) -->
+  <script>
+    document.querySelectorAll('.collapsible').forEach(btn => {
+      const wrapper = btn.nextElementSibling; // the .content-wrapper
+      // If you want some sections open by default, set aria-expanded="true" and adjust height on load.
+      btn.addEventListener('click', () => {
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        if (isOpen) {
+          // close
+          btn.setAttribute('aria-expanded', 'false');
+          wrapper.style.maxHeight = null;
+        } else {
+          // open
+          btn.setAttribute('aria-expanded', 'true');
+          // set maxHeight to content's scrollHeight so transition animates
+          wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+        }
+      });
+
+      // Keep height synced on window resize (useful if text wraps)
+      window.addEventListener('resize', () => {
+        if (btn.getAttribute('aria-expanded') === 'true') {
+          wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Optional: initialize any sections set to aria-expanded=true in HTML
+    document.querySelectorAll('.collapsible[aria-expanded="true"]').forEach(btn => {
+      const wrapper = btn.nextElementSibling;
+      wrapper.style.maxHeight = wrapper.scrollHeight + 'px';
+    });
+  </script>
+
 
       <div class="mt-8 text-center">
         <a href="#reserve" class="inline-block bg-[var(--brand)] text-white px-6 py-3 rounded-md">Make a Reservation</a>
@@ -139,7 +206,7 @@
     <section id="about" class="bg-white border-t">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
         <h2 class="text-2xl font-bold">Our Story</h2>
-        <p class="mt-4 text-gray-600">A mother lost, but found, by continuing her joy in cooking, feeding, and sharing love& care through food. My early years were spent helping my mother prepare dinner for her doctor and nurse friends, as well as arranging holiday banquets for friends and family. The fondest memories I have are going to Coney Island with my older brothers and having lunch, usually pepper and egg sandwiches prepared by my Mother. We grew up across from the railroad and at that time we saw many young men going off to fight in the Korean War. With delight, my Mother prepared Meatball, Broccoli Rape & Sausage heroes for the boys on the way to war.— Tommaso’s on 61st street?
+        <p class="mt-4 text-gray-600">A mother lost, but found, by continuing her joy in cooking, feeding, and sharing love & care through food. My early years were spent helping my mother prepare dinner for her doctor and nurse friends, as well as arranging holiday banquets for friends and family. The fondest memories I have are going to Coney Island with my older brothers and having lunch, usually pepper and egg sandwiches prepared by my Mother. We grew up across from the railroad and at that time we saw many young men going off to fight in the Korean War. With delight, my Mother prepared Meatball, Broccoli Rape & Sausage heroes for the boys on the way to war.— Tommaso’s on 61st street?
 
 It has been a long journey for me, some of the highlights include, four years of studying classic cooking in school, apprenticeship at the 21 club, and a summer cooking in the mountains of upstate New York. Also, I spent six months working for Air Lacarte at JFK airport and did a six year stint at Jacques Caterers, a Brooklyn landmark. Eventually I became chef in charge of their catering hall with three banquet rooms.
 
@@ -229,8 +296,8 @@ At Tommaso we use only the finest produce being as true to traditions as well as
     <footer class="bg-gray-900 text-gray-300 py-8">
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
         <div>
-          <div class="text-white font-semibold">Ristorante Bella Vita</div>
-          <div class="text-sm mt-1">© "Bella Vita" — All rights reserved</div>
+          <div class="text-white font-semibold">Tommaso</div>
+          <div class="text-sm mt-1">© "Tommaso" — All rights reserved</div>
         </div>
         <div class="text-sm">Follow us
           <a href="#" class="ml-3 hover:text-white">Instagram</a>
