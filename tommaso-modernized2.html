@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tommaso — Authentic Italian, Brooklyn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F4F7FC;
+    --cream-dark: #E6EDF7;
+    --espresso: #0D1B2E;
+    --terracotta: #1B4F8A;
+    --terracotta-light: #3B72B8;
+    --sage: #4A6FA5;
+    --gold: #6AACD4;
+    --warm-gray: #6B7C93;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--espresso);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(244, 247, 252, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(26,20,16,0.08);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--espresso);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--espresso);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .nav-links a:hover { opacity: 1; }
+
+  .nav-reserve {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--espresso);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .nav-reserve:hover { background: var(--terracotta); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-text {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 5rem 6rem 4rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3.5rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: var(--warm-gray);
+    max-width: 380px;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-ctas {
+    display: flex; gap: 1rem; align-items: center;
+  }
+
+  .btn-primary {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: var(--terracotta);
+    padding: 0.85rem 2rem;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--espresso); }
+
+  .btn-secondary {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--espresso);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--terracotta); }
+
+  .hero-info {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(26,20,16,0.12);
+    display: flex; gap: 2.5rem;
+  }
+
+  .hero-info-item label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 0.3rem;
+  }
+
+  .hero-info-item span {
+    font-size: 0.9rem;
+    color: var(--espresso);
+  }
+
+  .hero-image {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(160deg, #2563A8 0%, #1B4F8A 30%, #0F3060 60%, #071A38 100%);
+  }
+
+  .hero-image-overlay {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 3rem;
+    background: linear-gradient(to top, rgba(26,14,6,0.7) 0%, transparent 60%);
+  }
+
+  .hero-image-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,240,232,0.9);
+    line-height: 1.3;
+  }
+
+  /* Decorative pasta illustration */
+  .pasta-art {
+    position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%);
+    width: 280px; height: 280px;
+    opacity: 0.15;
+  }
+
+  /* ─── SECTION: STORY ─── */
+  .story {
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .story-content {}
+
+  .section-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.25rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--terracotta); }
+
+  .section-body {
+    font-size: 1rem;
+    color: var(--warm-gray);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .story-visual {
+    position: relative;
+    height: 520px;
+  }
+
+  .story-card {
+    position: absolute;
+    background: var(--espresso);
+    color: var(--cream);
+    padding: 2.5rem;
+  }
+
+  .story-card-main {
+    inset: 0;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .story-card-main .year {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .story-card-main .year-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-bottom: 1.5rem;
+  }
+
+  .story-card-main p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.75);
+  }
+
+  .story-accent {
+    position: absolute;
+    bottom: -2rem; right: -2rem;
+    width: 160px; height: 160px;
+    background: var(--cream-dark);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+
+  .story-accent-inner {
+    text-align: center;
+  }
+
+  .story-accent-inner .number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 600;
+    color: var(--terracotta);
+    /* terracotta var is now navy blue */
+    line-height: 1;
+  }
+
+  .story-accent-inner .label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-top: 0.4rem;
+  }
+
+  /* ─── MENU ─── */
+  .menu-section {
+    background: var(--espresso);
+    color: var(--cream);
+    padding: 7rem 4rem;
+  }
+
+  .menu-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 4rem;
+  }
+
+  .menu-title-block .section-eyebrow { color: var(--terracotta-light); }
+  .menu-title-block .section-title { color: var(--cream); }
+
+  .menu-note {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.45);
+    max-width: 260px;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(245,240,232,0.08);
+  }
+
+  .menu-category {
+    background: var(--espresso);
+    padding: 2.5rem;
+    border: 1px solid rgba(245,240,232,0.08);
+  }
+
+  .menu-cat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+  }
+
+  .menu-items { list-style: none; }
+
+  .menu-item {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.05);
+  }
+
+  .menu-item:last-child { border-bottom: none; }
+
+  .menu-item-name {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.85);
+    font-weight: 400;
+    flex: 1;
+    padding-right: 1rem;
+  }
+
+  .menu-item-desc {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.4);
+    margin-top: 0.2rem;
+    line-height: 1.4;
+  }
+
+  .menu-item-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .menu-cta {
+    text-align: center;
+    margin-top: 3.5rem;
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cream);
+    border: 1px solid rgba(245,240,232,0.3);
+    padding: 0.9rem 2.5rem;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(245,240,232,0.08);
+    border-color: rgba(245,240,232,0.6);
+  }
+
+  /* ─── EXPERIENCE ─── */
+  .experience {
+    padding: 7rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .exp-visual {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    height: 480px;
+  }
+
+  .exp-card {
+    background: var(--cream-dark);
+    display: flex; align-items: flex-end;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .exp-card:first-child {
+    grid-column: span 2;
+    background: var(--terracotta);
+  }
+
+  .exp-card-text {
+    position: relative; z-index: 1;
+  }
+
+  .exp-card-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 0.35rem;
+  }
+
+  .exp-card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: white;
+    line-height: 1.2;
+  }
+
+  .exp-card:not(:first-child) .exp-card-label { color: var(--warm-gray); }
+  .exp-card:not(:first-child) .exp-card-title { color: var(--espresso); }
+
+  .exp-deco {
+    position: absolute;
+    top: -20px; right: -20px;
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* ─── RESERVATIONS ─── */
+  .reservations {
+    background: var(--cream-dark);
+    padding: 7rem 4rem;
+    text-align: center;
+  }
+
+  .reservations .section-title {
+    max-width: 600px;
+    margin: 0 auto 0.75rem;
+  }
+
+  .reservations .section-body {
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+  }
+
+  .contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 3.5rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(26,20,16,0.1);
+  }
+
+  .contact-item { text-align: center; }
+
+  .contact-item label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-item a,
+  .contact-item span {
+    font-size: 1rem;
+    color: var(--espresso);
+    text-decoration: none;
+    font-weight: 400;
+  }
+
+  .contact-item a:hover { color: var(--terracotta); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--espresso);
+    color: rgba(245,240,232,0.5);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--cream);
+    letter-spacing: 0.04em;
+  }
+
+  footer p { font-size: 0.8rem; }
+
+  footer a {
+    color: rgba(245,240,232,0.5);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  footer a:hover { color: var(--cream); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-text { padding: 5rem 1.5rem 3rem; }
+    .hero-image { display: none; }
+    .story { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+    .story-visual { height: 360px; }
+    .story-accent { display: none; }
+    .menu-section { padding: 5rem 1.5rem; }
+    .menu-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .menu-note { text-align: left; }
+    .menu-grid { grid-template-columns: 1fr; }
+    .experience { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+    .exp-visual { height: 340px; }
+    .reservations { padding: 5rem 1.5rem; }
+    .contact-grid { flex-direction: column; gap: 2rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2.5rem 1.5rem; }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.7s ease both; }
+  .hero-title { animation: fadeUp 0.7s 0.1s ease both; }
+  .hero-subtitle { animation: fadeUp 0.7s 0.2s ease both; }
+  .hero-ctas { animation: fadeUp 0.7s 0.3s ease both; }
+  .hero-info { animation: fadeUp 0.7s 0.4s ease both; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav aria-label="Main navigation">
+  <a href="#" class="nav-logo">Tommaso</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#reservations">Contact</a></li>
+  </ul>
+  <a href="tel:7184840028" class="nav-reserve">Call to Reserve</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" aria-label="Welcome">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Est. 1969 · Bensonhurst, Brooklyn</p>
+    <h1 class="hero-title">
+      Where Brooklyn<br>found its taste of<br><em>Italy.</em>
+    </h1>
+    <p class="hero-subtitle">
+      A family table honoring a mother's love for cooking — served with warmth, authenticity, and decades of tradition.
+    </p>
+    <div class="hero-ctas">
+      <a href="tel:7184840028" class="btn-primary">Make a Reservation</a>
+      <a href="#menu" class="btn-secondary">View Menu</a>
+    </div>
+    <div class="hero-info">
+      <div class="hero-info-item">
+        <label>Location</label>
+        <span>6916 18th Ave, Brooklyn</span>
+      </div>
+      <div class="hero-info-item">
+        <label>Phone</label>
+        <span>(718) 484-0028</span>
+      </div>
+      <div class="hero-info-item">
+        <label>Dress Code</label>
+        <span>Business Casual</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-image" aria-hidden="true">
+    <div class="hero-image-bg"></div>
+    <!-- Decorative SVG pasta motif -->
+    <svg class="pasta-art" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="100" cy="100" r="90" stroke="white" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="70" stroke="white" stroke-width="1"/>
+      <circle cx="100" cy="100" r="50" stroke="white" stroke-width="0.75"/>
+      <circle cx="100" cy="100" r="30" stroke="white" stroke-width="0.5"/>
+      <path d="M 20 100 Q 60 60 100 100 Q 140 140 180 100" stroke="white" stroke-width="1.5" fill="none"/>
+      <path d="M 20 80 Q 60 40 100 80 Q 140 120 180 80" stroke="white" stroke-width="1" fill="none"/>
+      <path d="M 20 120 Q 60 80 100 120 Q 140 160 180 120" stroke="white" stroke-width="1" fill="none"/>
+    </svg>
+    <div class="hero-image-overlay">
+      <p class="hero-image-caption">"His food was always<br>excellent and top-notch."</p>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section class="story" id="story" aria-label="Our story">
+  <div class="story-content">
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title">Born from a mother's<br><em>love for feeding people.</em></h2>
+    <p class="section-body">
+      After losing his beloved mother, Thomas Verdillo opened Tommaso as a living tribute — carrying on her joy for cooking, her generosity, and her belief that a great meal is an act of love.
+    </p>
+    <p class="section-body">
+      For over five decades, Tommaso has been the heartbeat of Bensonhurst: a place where neighbors become regulars, and regulars become family. From hand-rolled pasta to house-made mozzarella, every dish is a memory made edible.
+    </p>
+    <a href="#reservations" class="btn-secondary">Join Us for Dinner</a>
+  </div>
+
+  <div class="story-visual" aria-hidden="true">
+    <div class="story-card story-card-main">
+      <p class="year">1969</p>
+      <p class="year-label">Founded in Brooklyn</p>
+      <p>A neighborhood table that became a Brooklyn institution — built on family, flavor, and the warmth of an open kitchen.</p>
+    </div>
+    <div class="story-accent">
+      <div class="story-accent-inner">
+        <p class="number">50+</p>
+        <p class="label">Years of<br>tradition</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu" aria-label="Menu">
+  <div class="menu-header">
+    <div class="menu-title-block">
+      <p class="section-eyebrow">The Menu</p>
+      <h2 class="section-title">Classics from the<br><em>Italian table.</em></h2>
+    </div>
+    <p class="menu-note">Menu changes seasonally. Ask your server about daily specials.</p>
+  </div>
+
+  <div class="menu-grid">
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Antipasti</h3>
+      <ul class="menu-items">
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Burrata della Casa</p>
+            <p class="menu-item-desc">House-stretched, roasted peppers, aged balsamic</p>
+          </div>
+          <span class="menu-item-price">$18</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Polpo alla Griglia</p>
+            <p class="menu-item-desc">Grilled octopus, cannellini, olive oil</p>
+          </div>
+          <span class="menu-item-price">$24</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Antipasto Misto</p>
+            <p class="menu-item-desc">Cured meats, marinated vegetables, crostini</p>
+          </div>
+          <span class="menu-item-price">$22</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Zuppa del Giorno</p>
+            <p class="menu-item-desc">Soup of the day</p>
+          </div>
+          <span class="menu-item-price">$14</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Primi — Pasta</h3>
+      <ul class="menu-items">
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Papadella al Coniglio</p>
+            <p class="menu-item-desc">Wide pasta, braised rabbit, rosemary</p>
+          </div>
+          <span class="menu-item-price">$34</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Spaghetti Bolognese</p>
+            <p class="menu-item-desc">Slow-cooked beef & pork ragù, Parmigiano</p>
+          </div>
+          <span class="menu-item-price">$28</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Fettuccine Cinghiale</p>
+            <p class="menu-item-desc">Wild boar ragù, fresh herbs</p>
+          </div>
+          <span class="menu-item-price">$36</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Polenta Abruzzese</p>
+            <p class="menu-item-desc">Creamy polenta, sausage, Sunday gravy</p>
+          </div>
+          <span class="menu-item-price">$30</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-category">
+      <h3 class="menu-cat-title">Secondi & Dolci</h3>
+      <ul class="menu-items">
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Coda di Rospo Brasata</p>
+            <p class="menu-item-desc">Braised monkfish, tomato, capers</p>
+          </div>
+          <span class="menu-item-price">$42</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Tiramisù</p>
+            <p class="menu-item-desc">Classic, mascarpone, espresso-soaked ladyfingers</p>
+          </div>
+          <span class="menu-item-price">$12</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Tartufo</p>
+            <p class="menu-item-desc">Chocolate gelato, dark chocolate shell</p>
+          </div>
+          <span class="menu-item-price">$12</span>
+        </li>
+        <li class="menu-item">
+          <div>
+            <p class="menu-item-name">Semifreddo al Caramello</p>
+            <p class="menu-item-desc">Semi-frozen dessert, salted caramel</p>
+          </div>
+          <span class="menu-item-price">$14</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="menu-cta">
+    <a href="mailto:tom@tommasoinbrooklyn.com" class="btn-ghost">Inquire About Private Dining</a>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience" aria-label="The experience">
+  <div class="exp-visual" aria-hidden="true">
+    <div class="exp-card" style="grid-column: span 2; background: var(--terracotta-light);">
+      <div class="exp-deco"></div>
+      <div class="exp-card-text">
+        <p class="exp-card-label">Live Music</p>
+        <h3 class="exp-card-title">Opera &amp; jazz on<br>select evenings</h3>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-card-text">
+        <p class="exp-card-label">Wine</p>
+        <h3 class="exp-card-title" style="color: var(--espresso);">Italian cellar</h3>
+      </div>
+    </div>
+    <div class="exp-card" style="background: var(--espresso);">
+      <div class="exp-card-text">
+        <p class="exp-card-label">Private Events</p>
+        <h3 class="exp-card-title">Full buyouts welcome</h3>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <p class="section-eyebrow">The Experience</p>
+    <h2 class="section-title">More than a meal —<br><em>a true occasion.</em></h2>
+    <p class="section-body">
+      Tommaso is a place to slow down. To let the evening unfold over house-made pasta, a bottle chosen with care, and the kind of service that makes you feel like a guest in someone's home.
+    </p>
+    <p class="section-body">
+      We host intimate private dinners, celebrations, and special events. Live music graces select evenings — ask when you call.
+    </p>
+    <a href="mailto:tom@tommasoinbrooklyn.com" class="btn-primary" style="display: inline-block; margin-top: 0.5rem;">Plan a Private Event</a>
+  </div>
+</section>
+
+<!-- RESERVATIONS -->
+<section class="reservations" id="reservations" aria-label="Reservations and contact">
+  <p class="section-eyebrow">Reserve Your Table</p>
+  <h2 class="section-title">Come as a guest.<br><em>Leave as family.</em></h2>
+  <p class="section-body">
+    Reservations are warmly encouraged. Call us directly — we look forward to welcoming you.
+  </p>
+  <a href="tel:7184840028" class="btn-primary" style="display: inline-block; font-size: 1rem; padding: 1rem 2.5rem; letter-spacing: 0.05em;">(718) 484-0028</a>
+
+  <div class="contact-grid">
+    <div class="contact-item">
+      <label>Address</label>
+      <a href="https://maps.google.com/?q=6916+18th+Ave+Brooklyn+NY+11204" target="_blank" rel="noopener">6916 18th Ave, Brooklyn, NY 11204</a>
+    </div>
+    <div class="contact-item">
+      <label>Email</label>
+      <a href="mailto:tom@tommasoinbrooklyn.com">tom@tommasoinbrooklyn.com</a>
+    </div>
+    <div class="contact-item">
+      <label>Hours</label>
+      <span>Wed–Sun, from 5:00 pm</span>
+    </div>
+    <div class="contact-item">
+      <label>Accepts</label>
+      <span>Visa, Amex, Mastercard</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Tommaso</p>
+  <p>&copy; 2025 Tommaso Restaurant · Brooklyn, NY</p>
+  <p>
+    <a href="mailto:tom@tommasoinbrooklyn.com">tom@tommasoinbrooklyn.com</a>
+  </p>
+</footer>
+
+</body>
+</html>
