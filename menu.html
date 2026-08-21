@@ -1,169 +1,345 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tommaso — Menu</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tommaso Brooklyn — Menu</title>
 
 <style>
-    * {
-        box-sizing: border-box;
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f6f1e8;
+    color: #222;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.page {
+    max-width: 900px;
+    margin: auto;
+    padding: 50px 25px 80px;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 45px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 52px;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    margin-top: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #777;
+}
+
+.category {
+    margin-bottom: 55px;
+}
+
+.category h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 30px;
+}
+
+.category h2:after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 2px;
+    background: #222;
+    margin: 14px auto 0;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 22px 0;
+    border-bottom: 1px solid #d8d0c4;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.description {
+    font-family: Arial, sans-serif;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.price {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-right: 5px;
+    background: #e5ddd0;
+    border-radius: 3px;
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.photo {
+    width: 110px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.error {
+    text-align: center;
+    padding: 40px;
+    color: #a33;
+    font-family: Arial, sans-serif;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #d8d0c4;
+    color: #888;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+@media (max-width: 600px) {
+
+    .page {
+        padding: 35px 18px 60px;
     }
 
-    body {
-        margin: 0;
-        background: #f7f3ec;
-        color: #222;
-        font-family: Georgia, "Times New Roman", serif;
+    header h1 {
+        font-size: 40px;
     }
 
-    .header {
-        text-align: center;
-        padding: 60px 20px 40px;
-    }
-
-    .header h1 {
-        margin: 0;
-        font-size: 48px;
-        font-weight: normal;
-        letter-spacing: 2px;
-    }
-
-    .header p {
-        margin-top: 10px;
-        color: #777;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-    }
-
-    .menu {
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 0 25px 70px;
-    }
-
-    .category {
-        margin-bottom: 55px;
-    }
-
-    .category-title {
-        text-align: center;
-        font-size: 30px;
-        font-weight: normal;
-        margin: 0 0 30px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .category-title::after {
-        content: "";
-        display: block;
-        width: 50px;
-        height: 2px;
-        background: #222;
-        margin: 12px auto 0;
+    .category h2 {
+        font-size: 24px;
     }
 
     .item {
-        display: flex;
-        justify-content: space-between;
-        gap: 30px;
-        padding: 22px 0;
-        border-bottom: 1px solid #ddd5c9;
-    }
-
-    .item:last-child {
-        border-bottom: none;
-    }
-
-    .item-content {
-        flex: 1;
+        gap: 15px;
     }
 
     .item-name {
-        font-size: 21px;
-        font-weight: bold;
-        margin-bottom: 7px;
+        font-size: 18px;
     }
 
-    .item-description {
-        color: #777;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-        line-height: 1.6;
+    .description {
+        font-size: 13px;
     }
 
     .price {
-        font-family: Arial, sans-serif;
-        font-size: 18px;
-        font-weight: bold;
-        white-space: nowrap;
+        font-size: 16px;
     }
 
-    .tags {
-        margin-top: 10px;
+    .photo {
+        width: 80px;
+        height: 65px;
     }
-
-    .tag {
-        display: inline-block;
-        background: #e6dfd3;
-        color: #555;
-        padding: 4px 8px;
-        margin-right: 5px;
-        border-radius: 3px;
-        font-family: Arial, sans-serif;
-        font-size: 10px;
-        text-transform: uppercase;
-        letter-spacing: .5px;
-    }
-
-    .loading {
-        text-align: center;
-        padding: 60px 20px;
-        color: #777;
-        font-family: Arial, sans-serif;
-    }
-
-    .error {
-        text-align: center;
-        padding: 40px 20px;
-        color: #a33;
-        font-family: Arial, sans-serif;
-    }
-
-    @media (max-width: 600px) {
-
-        .header {
-            padding: 40px 20px 30px;
-        }
-
-        .header h1 {
-            font-size: 38px;
-        }
-
-        .menu {
-            padding: 0 18px 50px;
-        }
-
-        .category-title {
-            font-size: 25px;
-        }
-
-        .item {
-            gap: 15px;
-        }
-
-        .item-name {
-            font-size: 18px;
-        }
-
-        .item-description {
-            font-size: 13px;
-        }
-
-        .price {
-            font-size: 16px;
-        }
-    }
+}
 </style>
+</head>
 
-</head> <body> <header class="header"> <h1>Tommaso</h1> <p>Menu</p> </header> <main class="menu" id="menu"> <div class="loading"> Loading menu... </div> </main> <script> const MENU_URL = "menu.json"; async function loadMenu() { const menuContainer = document.getElementById("menu"); try { const response = await fetch(MENU_URL); if (!response.ok) { throw new Error("Could not load menu.json"); } const data = await response.json(); menuContainer.innerHTML = ""; if (!data.categories || data.categories.length === 0) { menuContainer.innerHTML = '<div class="loading">No menu items available.</div>'; return; } data.categories.forEach(category => { const categoryElement = document.createElement("section"); categoryElement.className = "category"; const title = document.createElement("h2"); title.className = "category-title"; title.textContent = category.name; categoryElement.appendChild(title); category.items.forEach(item => { // Don't display unavailable items if (item.available === false) { return; } const itemElement = document.createElement("div"); itemElement.className = "item"; const content = document.createElement("div"); content.className = "item-content"; const name = document.createElement("div"); name.className = "item-name"; name.textContent = item.name; content.appendChild(name); if (item.description) { const description = document.createElement("div"); description.className = "item-description"; description.textContent = item.description; content.appendChild(description); } if (item.dietary_tags && item.dietary_tags.length > 0) { const tags = document.createElement("div"); tags.className = "tags"; item.dietary_tags.forEach(tag => { const tagElement = document.createElement("span"); tagElement.className = "tag"; tagElement.textContent = tag; tags.appendChild(tagElement); }); content.appendChild(tags); } const price = document.createElement("div"); price.className = "price"; price.textContent = "$" + Number(item.price).toFixed(2); itemElement.appendChild(content); itemElement.appendChild(price); categoryElement.appendChild(itemElement); }); menuContainer.appendChild(categoryElement); }); } catch (error) { console.error(error); menuContainer.innerHTML = ` <div class="error"> Unable to load the menu. </div> `; } } loadMenu(); </script> </body> </html>
+<body>
+
+<div class="page">
+
+<header>
+    <h1>Tommaso</h1>
+    <div class="subtitle">Brooklyn · Menu</div>
+</header>
+
+<main id="menu">
+    Loading menu...
+</main>
+
+<footer>
+    Tommaso · Brooklyn
+</footer>
+
+</div>
+
+<script>
+
+const MENU_URL = "https://tommasoinbrooklyn.com/menu.json";
+
+async function loadMenu() {
+
+    const container = document.getElementById("menu");
+
+    try {
+
+        const response = await fetch(MENU_URL, {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                "menu.json returned HTTP " + response.status
+            );
+        }
+
+        const menu = await response.json();
+
+        if (!menu.categories) {
+            throw new Error("No categories found in menu.json");
+        }
+
+        container.innerHTML = "";
+
+        menu.categories.forEach(category => {
+
+            const section = document.createElement("section");
+            section.className = "category";
+
+            const heading = document.createElement("h2");
+            heading.textContent = category.name;
+
+            section.appendChild(heading);
+
+            if (!category.items) {
+                return;
+            }
+
+            category.items.forEach(item => {
+
+                if (item.available === false) {
+                    return;
+                }
+
+                const row = document.createElement("div");
+                row.className = "item";
+
+                const info = document.createElement("div");
+                info.className = "item-info";
+
+                const name = document.createElement("div");
+                name.className = "item-name";
+                name.textContent = item.name;
+
+                info.appendChild(name);
+
+                if (item.description) {
+
+                    const description =
+                        document.createElement("div");
+
+                    description.className = "description";
+                    description.textContent = item.description;
+
+                    info.appendChild(description);
+                }
+
+                if (
+                    item.dietary_tags &&
+                    item.dietary_tags.length
+                ) {
+
+                    const tags =
+                        document.createElement("div");
+
+                    tags.className = "tags";
+
+                    item.dietary_tags.forEach(tag => {
+
+                        const badge =
+                            document.createElement("span");
+
+                        badge.className = "tag";
+                        badge.textContent = tag;
+
+                        tags.appendChild(badge);
+                    });
+
+                    info.appendChild(tags);
+                }
+
+                row.appendChild(info);
+
+                if (item.photo) {
+
+                    const image =
+                        document.createElement("img");
+
+                    image.className = "photo";
+                    image.src = item.photo;
+                    image.alt = item.name;
+                    image.loading = "lazy";
+
+                    row.appendChild(image);
+                }
+
+                const price =
+                    document.createElement("div");
+
+                price.className = "price";
+
+                price.textContent =
+                    "$" + Number(item.price).toFixed(2);
+
+                row.appendChild(price);
+
+                section.appendChild(row);
+            });
+
+            container.appendChild(section);
+        });
+
+    } catch (error) {
+
+        console.error("Menu error:", error);
+
+        container.innerHTML = `
+            <div class="error">
+                <strong>Unable to load menu.</strong>
+                <br><br>
+                Please check that menu.json is accessible.
+            </div>
+        `;
+    }
+}
+
+loadMenu();
+
+</script>
+
+</body>
+</html>
