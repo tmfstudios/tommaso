@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:53:01+00:00",
+    "generated_at": "2026-08-21T19:53:31+00:00",
     "categories": [
         {
             "id": 1,
@@ -103,8 +103,8 @@
                 },
                 {
                     "id": 11,
-                    "name": "Caesar Salad",
-                    "description": "romaine, croutons, and parmesan",
+                    "name": "House Salad",
+                    "description": "romaine, tomato, red onion, olives, and roasted red peppers, balsamic vinegar & oil",
                     "price": 13,
                     "photo": null,
                     "dietary_tags": [],
