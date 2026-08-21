@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:54:06+00:00",
+    "generated_at": "2026-08-21T19:54:32+00:00",
     "categories": [
         {
             "id": 1,
@@ -18,15 +18,6 @@
                     "id": 3,
                     "name": "Baby Meatballs",
                     "description": "beef & pork blend, tomato sauceexample",
-                    "price": 14,
-                    "photo": null,
-                    "dietary_tags": [],
-                    "available": true
-                },
-                {
-                    "id": 12,
-                    "name": "Arugula Salad",
-                    "description": "goat cheese, walnuts, raisins, house dressing",
                     "price": 14,
                     "photo": null,
                     "dietary_tags": [],
@@ -115,6 +106,15 @@
                     "name": "House Salad",
                     "description": "romaine, tomato, red onion, olives, and roasted red peppers, balsamic vinegar & oil",
                     "price": 13,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 12,
+                    "name": "Seafood Salad",
+                    "description": "calamari, octopus, scungilli, shrimp, celery, and olive oil",
+                    "price": 22,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
