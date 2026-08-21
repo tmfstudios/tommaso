@@ -423,6 +423,116 @@
     border-color: rgba(245,240,232,0.6);
   }
 
+.menu-section {
+    background: var(--espresso);
+    color: var(--cream);
+    padding: 7rem 4rem;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    background: rgba(245,240,232,0.08);
+}
+
+.menu-category {
+    background: var(--espresso);
+    padding: 2.5rem;
+    border: 1px solid rgba(245,240,232,0.08);
+}
+
+.menu-cat-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+}
+
+.menu-items {
+    list-style: none;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.05);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.menu-item-name {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.85);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.menu-item-desc {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.4);
+    margin-top: 0.2rem;
+    line-height: 1.4;
+}
+
+.menu-item-price {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.menu-item-tags {
+    margin-top: 0.5rem;
+}
+
+.menu-item-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-right: 0.5rem;
+}
+
+.menu-error {
+    color: var(--cream);
+    text-align: center;
+    padding: 3rem;
+}
+
+@media (max-width: 600px) {
+
+    .menu-section {
+        padding: 4rem 1.25rem;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-category {
+        padding: 2rem 1.5rem;
+    }
+}
+
+ 
   /* ─── EXPERIENCE ─── */
   .experience {
     padding: 7rem 4rem;
