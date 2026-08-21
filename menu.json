@@ -1,14 +1,14 @@
 {
-    "generated_at": "2026-08-21T18:20:48+00:00",
+    "generated_at": "2026-08-21T19:25:10+00:00",
     "categories": [
         {
             "id": 1,
-            "name": "test",
+            "name": "Appetizers",
             "items": [
                 {
                     "id": 5,
-                    "name": "add another",
-                    "description": "test",
+                    "name": "Bakes Clams (8)",
+                    "description": "little necks, oreganata",
                     "price": 12,
                     "photo": null,
                     "dietary_tags": [],
@@ -54,17 +54,27 @@
         },
         {
             "id": 2,
-            "name": "test2",
+            "name": "Salads",
             "items": []
         },
         {
             "id": 4,
-            "name": "test4",
+            "name": "Soup",
+            "items": []
+        },
+        {
+            "id": 8,
+            "name": "Chicken",
+            "items": []
+        },
+        {
+            "id": 5,
+            "name": "Beef",
             "items": []
         },
         {
             "id": 3,
-            "name": "test3",
+            "name": "Pork",
             "items": [
                 {
                     "id": 6,
@@ -76,6 +86,21 @@
                     "available": true
                 }
             ]
+        },
+        {
+            "id": 6,
+            "name": "Veal",
+            "items": []
+        },
+        {
+            "id": 9,
+            "name": "Fish",
+            "items": []
+        },
+        {
+            "id": 7,
+            "name": "Sauetéed Vegetables",
+            "items": []
         }
     ]
 }
