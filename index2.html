@@ -795,18 +795,149 @@
 
  
  
-    <section class="menu-section">
-        <div id="restaurant-menu"></div>
-    </section>
+<script>
 
-    <script src="/js/menu.js"></script> 
- 
- 
- 
- 
- 
- 
- 
+const MENU_URL = "menu.json";
+
+async function loadMenu() {
+
+    const container = document.getElementById("menu");
+
+    try {
+
+        const response = await fetch(MENU_URL, {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                "menu.json returned HTTP " + response.status
+            );
+        }
+
+        const menu = await response.json();
+
+        if (!menu.categories) {
+            throw new Error("No categories found in menu.json");
+        }
+
+        container.innerHTML = "";
+
+        menu.categories.forEach(category => {
+
+            const section = document.createElement("section");
+            section.className = "category";
+
+            const heading = document.createElement("h2");
+            heading.textContent = category.name;
+
+            section.appendChild(heading);
+
+            if (!category.items) {
+                return;
+            }
+
+            category.items.forEach(item => {
+
+                if (item.available === false) {
+                    return;
+                }
+
+                const row = document.createElement("div");
+                row.className = "item";
+
+                const info = document.createElement("div");
+                info.className = "item-info";
+
+                const name = document.createElement("div");
+                name.className = "item-name";
+                name.textContent = item.name;
+
+                info.appendChild(name);
+
+                if (item.description) {
+
+                    const description =
+                        document.createElement("div");
+
+                    description.className = "description";
+                    description.textContent = item.description;
+
+                    info.appendChild(description);
+                }
+
+                if (
+                    item.dietary_tags &&
+                    item.dietary_tags.length
+                ) {
+
+                    const tags =
+                        document.createElement("div");
+
+                    tags.className = "tags";
+
+                    item.dietary_tags.forEach(tag => {
+
+                        const badge =
+                            document.createElement("span");
+
+                        badge.className = "tag";
+                        badge.textContent = tag;
+
+                        tags.appendChild(badge);
+                    });
+
+                    info.appendChild(tags);
+                }
+
+                row.appendChild(info);
+
+                if (item.photo) {
+
+                    const image =
+                        document.createElement("img");
+
+                    image.className = "photo";
+                    image.src = item.photo;
+                    image.alt = item.name;
+                    image.loading = "lazy";
+
+                    row.appendChild(image);
+                }
+
+                const price =
+                    document.createElement("div");
+
+                price.className = "price";
+
+                price.textContent =
+                    "$" + Number(item.price).toFixed(2);
+
+                row.appendChild(price);
+
+                section.appendChild(row);
+            });
+
+            container.appendChild(section);
+        });
+
+    } catch (error) {
+
+        console.error("Menu error:", error);
+
+        container.innerHTML = `
+            <div class="error">
+                <strong>Unable to load menu.</strong>
+                <br><br>
+                Please check that menu.json is accessible.
+            </div>
+        `;
+    }
+}
+
+loadMenu();
+
+</script>
  
  
  
