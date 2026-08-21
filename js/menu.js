@@ -1,4 +1,4 @@
-const MENU_URL = "https://masomenu.ifree.page/menu.json";
+const MENU_URL = "menu.json";
 
 async function loadMenu() {
     const container = document.getElementById("restaurant-menu");
