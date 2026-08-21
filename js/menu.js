@@ -1,4 +1,4 @@
-const MENU_URL = "https://menu.tommasoinbrooklyn.com/menu.json";
+const MENU_URL = "http://masomenu.mypressonline.com/menu.json";
 
 async function loadMenu() {
     const container = document.getElementById("restaurant-menu");
