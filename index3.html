@@ -881,6 +881,94 @@
     <a href="mailto:tom@tommasoinbrooklyn.com">tom@tommasoinbrooklyn.com</a>
   </p>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const menuContainer = document.getElementById("menu-content");
+
+    fetch("/menu.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Could not load menu.json");
+            }
+
+            return response.json();
+        })
+
+        .then(menu => {
+
+            menuContainer.innerHTML = "";
+
+            menu.categories.forEach(category => {
+
+                // Don't display empty categories
+                const availableItems = category.items.filter(
+                    item => item.available !== false
+                );
+
+                if (availableItems.length === 0) {
+                    return;
+                }
+
+                const categoryHTML = `
+                    <div class="menu-category">
+
+                        <h3>${escapeHTML(category.name)}</h3>
+
+                        ${availableItems.map(item => `
+                            <div class="menu-item">
+
+                                <div class="menu-item-info">
+
+                                    <h4>
+                                        ${escapeHTML(item.name)}
+                                    </h4>
+
+                                    ${
+                                        item.description
+                                            ? `<p>${escapeHTML(item.description)}</p>`
+                                            : ""
+                                    }
+
+                                </div>
+
+                                <div class="menu-item-price">
+                                    $${Number(item.price).toFixed(0)}
+                                </div>
+
+                            </div>
+                        `).join("")}
+
+                    </div>
+                `;
+
+                menuContainer.insertAdjacentHTML(
+                    "beforeend",
+                    categoryHTML
+                );
+            });
+        })
+
+        .catch(error => {
+            console.error("Menu loading error:", error);
+
+            menuContainer.innerHTML = `
+                <p>Menu temporarily unavailable.</p>
+            `;
+        });
+
+
+    function escapeHTML(value) {
+        return String(value)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+});
+</script>
 
 </body>
 </html>
