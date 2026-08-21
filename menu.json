@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:52:59+00:00",
+    "generated_at": "2026-08-21T19:53:01+00:00",
     "categories": [
         {
             "id": 1,
@@ -94,6 +94,15 @@
             "items": [
                 {
                     "id": 10,
+                    "name": "Caesar Salad",
+                    "description": "romaine, croutons, and parmesan",
+                    "price": 13,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 11,
                     "name": "Caesar Salad",
                     "description": "romaine, croutons, and parmesan",
                     "price": 13,
