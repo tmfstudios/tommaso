@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:49:42+00:00",
+    "generated_at": "2026-08-21T19:50:49+00:00",
     "categories": [
         {
             "id": 1,
@@ -64,6 +64,15 @@
                     "name": "Cold Antipasto",
                     "description": "mozzarella, provolone, caponata, zucchini, roasted red peppers, sweet pepper stuffed w/ tuna, and soppressata",
                     "price": 15,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 8,
+                    "name": "Stuffed Artichoke",
+                    "description": "breadcrumbs, garlic, and pecorino romano cheese",
+                    "price": 16,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
