@@ -19,9 +19,16 @@ body {
 }
 
 .page {
-    max-width: 900px;
+    max-width: 1200px;
     margin: auto;
-    padding: 50px 25px 80px;
+    padding: 50px 35px 80px;
+}
+
+/* 3 categories per row on desktop */
+#menu {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 60px 30px;
 }
 
 header {
@@ -46,7 +53,7 @@ header h1 {
 }
 
 .category {
-    margin-bottom: 55px;
+    margin-bottom: 0;
 }
 
 .category h2 {
@@ -140,10 +147,16 @@ footer {
     font-size: 12px;
 }
 
+/* Mobile: 1 category per row */
 @media (max-width: 600px) {
 
     .page {
         padding: 35px 18px 60px;
+    }
+
+    #menu {
+        grid-template-columns: 1fr;
+        gap: 45px;
     }
 
     header h1 {
