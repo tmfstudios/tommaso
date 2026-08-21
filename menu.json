@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T20:01:25+00:00",
+    "generated_at": "2026-08-21T20:02:30+00:00",
     "categories": [
         {
             "id": 1,
@@ -136,8 +136,8 @@
             "items": [
                 {
                     "id": 14,
-                    "name": "Lentils & Escarole",
-                    "description": "",
+                    "name": "Pasta Fagioli",
+                    "description": "mixed pasta and cannellini beans",
                     "price": 12,
                     "photo": null,
                     "dietary_tags": [],
