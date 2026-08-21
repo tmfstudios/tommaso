@@ -904,6 +904,151 @@
   <p>&copy; 2025 Tommaso Restaurant · Brooklyn, NY</p>
 </footer>
 
+<script>
+async function loadMenu() {
+
+    const container = document.getElementById("menu-container");
+
+    try {
+
+        const response = await fetch(
+            "https://tommasoinbrooklyn.com/menu.json",
+            {
+                cache: "no-store"
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error("Menu could not be loaded.");
+        }
+
+        const data = await response.json();
+
+        container.innerHTML = "";
+
+        const grid = document.createElement("div");
+        grid.className = "menu-grid";
+
+        data.categories.forEach(category => {
+
+            const categoryElement =
+                document.createElement("div");
+
+            categoryElement.className = "menu-category";
+
+            const title =
+                document.createElement("div");
+
+            title.className = "menu-cat-title";
+            title.textContent = category.name;
+
+            categoryElement.appendChild(title);
+
+            const items =
+                document.createElement("div");
+
+            items.className = "menu-items";
+
+            category.items.forEach(item => {
+
+                if (item.available === false) {
+                    return;
+                }
+
+                const menuItem =
+                    document.createElement("div");
+
+                menuItem.className = "menu-item";
+
+                const info =
+                    document.createElement("div");
+
+                info.className = "menu-item-info";
+
+                const name =
+                    document.createElement("div");
+
+                name.className = "menu-item-name";
+                name.textContent = item.name;
+
+                info.appendChild(name);
+
+                if (item.description) {
+
+                    const description =
+                        document.createElement("div");
+
+                    description.className =
+                        "menu-item-desc";
+
+                    description.textContent =
+                        item.description;
+
+                    info.appendChild(description);
+                }
+
+                if (
+                    item.dietary_tags &&
+                    item.dietary_tags.length
+                ) {
+
+                    const tags =
+                        document.createElement("div");
+
+                    tags.className =
+                        "menu-item-tags";
+
+                    item.dietary_tags.forEach(tag => {
+
+                        const tagElement =
+                            document.createElement("span");
+
+                        tagElement.className =
+                            "menu-item-tag";
+
+                        tagElement.textContent = tag;
+
+                        tags.appendChild(tagElement);
+                    });
+
+                    info.appendChild(tags);
+                }
+
+                const price =
+                    document.createElement("div");
+
+                price.className =
+                    "menu-item-price";
+
+                price.textContent =
+                    "$" + Number(item.price).toFixed(2);
+
+                menuItem.appendChild(info);
+                menuItem.appendChild(price);
+
+                items.appendChild(menuItem);
+            });
+
+            categoryElement.appendChild(items);
+            grid.appendChild(categoryElement);
+        });
+
+        container.appendChild(grid);
+
+    } catch (error) {
+
+        console.error("Menu error:", error);
+
+        container.innerHTML = `
+            <div class="menu-error">
+                Unable to load menu.
+            </div>
+        `;
+    }
+}
+
+loadMenu();
+</script>
 
  
 </body>
