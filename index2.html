@@ -345,23 +345,109 @@
 
 
 .menu-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0;
     width: 100%;
-    background: transparent;
+    background: var(--espresso);
+    align-items: start;
+}
+
+.menu-column {
+    min-width: 0;
+    background: var(--espresso);
 }
 
 .menu-category {
-    flex: 0 0 33.333333%;
-    width: 33.333333%;
-    background: var(--espresso);
+    width: 100%;
+    margin: 0;
     padding: 2rem 2.25rem 2.5rem;
-    border: 0;
-    border-right: 1px solid rgba(245,240,232,0.08);
-    border-bottom: 1px solid rgba(245,240,232,0.08);
+    background: var(--espresso);
+
+    border-right: 1px solid rgba(245,240,232,0.10);
+    border-bottom: 1px solid rgba(245,240,232,0.10);
+}
+
+.menu-column:last-child .menu-category {
+    border-right: none;
+}
+
+.menu-cat-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--gold);
+    margin: 0 0 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(245,240,232,0.10);
+}
+
+.menu-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(245,240,232,0.05);
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.menu-item-name {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.88);
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.menu-item-desc {
+    font-size: 0.75rem;
+    color: rgba(245,240,232,0.42);
+    margin-top: 0.2rem;
+    line-height: 1.45;
+}
+
+.menu-item-price {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1rem;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.menu-item-tags {
+    margin-top: 0.5rem;
+}
+
+.menu-item-tag {
+    display: inline-block;
+    font-family: Arial, sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--terracotta-light);
+    margin-right: 0.5rem;
+}
+
+.menu-loading,
+.menu-error {
+    color: rgba(245,240,232,0.6);
+    text-align: center;
+    padding: 3rem;
 }
 
 /* Remove right border from every third category */
@@ -377,23 +463,6 @@
 /* One category on the final row */
 .menu-category:last-child:nth-child(3n + 1) {
     margin-left: 33.333333%;
-}
-
-@media (max-width: 900px) {
-    .menu-grid {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .menu-category,
-    .menu-category:nth-last-child(2):nth-child(3n + 1),
-    .menu-category:last-child:nth-child(3n + 1) {
-        width: 100%;
-        flex: 0 0 100%;
-        margin-left: 0;
-        border-right: none;
-        padding: 2rem 1.5rem;
-    }
 }
 
  
@@ -922,52 +991,140 @@ async function loadMenu() {
 
         container.innerHTML = "";
 
+        /*
+         * Sort categories by sort_order
+         */
+        const categories = [...(data.categories || [])]
+            .sort((a, b) =>
+                Number(a.sort_order || 0) -
+                Number(b.sort_order || 0)
+            )
+            .filter(category =>
+                category.items &&
+                category.items.some(item =>
+                    item.available !== false
+                )
+            );
+
+
+        /*
+         * Create the main menu grid
+         */
         const grid = document.createElement("div");
         grid.className = "menu-grid";
 
-        data.categories.forEach(category => {
+
+        /*
+         * Create exactly 3 independent columns
+         */
+        const columns = [
+            document.createElement("div"),
+            document.createElement("div"),
+            document.createElement("div")
+        ];
+
+        columns.forEach(column => {
+            column.className = "menu-column";
+            grid.appendChild(column);
+        });
+
+
+        /*
+         * Put categories into columns:
+         *
+         * 1 → column 1
+         * 2 → column 2
+         * 3 → column 3
+         * 4 → column 1
+         * 5 → column 2
+         * 6 → column 3
+         *
+         * This prevents the vertical gaps
+         * caused by normal CSS grid rows.
+         */
+        categories.forEach((category, index) => {
+
+            const columnIndex = index % 3;
 
             const categoryElement =
                 document.createElement("div");
 
-            categoryElement.className = "menu-category";
+            categoryElement.className =
+                "menu-category";
+
+
+            /* CATEGORY TITLE */
 
             const title =
                 document.createElement("div");
 
-            title.className = "menu-cat-title";
-            title.textContent = category.name;
+            title.className =
+                "menu-cat-title";
+
+            title.textContent =
+                category.name;
 
             categoryElement.appendChild(title);
+
+
+            /* ITEMS */
 
             const items =
                 document.createElement("div");
 
-            items.className = "menu-items";
+            items.className =
+                "menu-items";
 
-            category.items.forEach(item => {
+
+            /*
+             * Sort items by sort_order
+             */
+            const categoryItems =
+                [...(category.items || [])]
+                .sort((a, b) =>
+                    Number(a.sort_order || 0) -
+                    Number(b.sort_order || 0)
+                );
+
+
+            categoryItems.forEach(item => {
 
                 if (item.available === false) {
                     return;
                 }
 
+
                 const menuItem =
                     document.createElement("div");
 
-                menuItem.className = "menu-item";
+                menuItem.className =
+                    "menu-item";
+
+
+                /* ITEM INFO */
 
                 const info =
                     document.createElement("div");
 
-                info.className = "menu-item-info";
+                info.className =
+                    "menu-item-info";
+
+
+                /* NAME */
 
                 const name =
                     document.createElement("div");
 
-                name.className = "menu-item-name";
-                name.textContent = item.name;
+                name.className =
+                    "menu-item-name";
+
+                name.textContent =
+                    item.name;
 
                 info.appendChild(name);
+
+
+                /* DESCRIPTION */
 
                 if (item.description) {
 
@@ -983,8 +1140,11 @@ async function loadMenu() {
                     info.appendChild(description);
                 }
 
+
+                /* DIETARY TAGS */
+
                 if (
-                    item.dietary_tags &&
+                    Array.isArray(item.dietary_tags) &&
                     item.dietary_tags.length
                 ) {
 
@@ -994,6 +1154,7 @@ async function loadMenu() {
                     tags.className =
                         "menu-item-tags";
 
+
                     item.dietary_tags.forEach(tag => {
 
                         const tagElement =
@@ -1002,13 +1163,18 @@ async function loadMenu() {
                         tagElement.className =
                             "menu-item-tag";
 
-                        tagElement.textContent = tag;
+                        tagElement.textContent =
+                            tag;
 
                         tags.appendChild(tagElement);
                     });
 
+
                     info.appendChild(tags);
                 }
+
+
+                /* PRICE */
 
                 const price =
                     document.createElement("div");
@@ -1019,17 +1185,26 @@ async function loadMenu() {
                 price.textContent =
                     "$" + Number(item.price).toFixed(2);
 
+
                 menuItem.appendChild(info);
                 menuItem.appendChild(price);
 
                 items.appendChild(menuItem);
+
             });
 
+
             categoryElement.appendChild(items);
-            grid.appendChild(categoryElement);
+
+            columns[columnIndex].appendChild(
+                categoryElement
+            );
+
         });
 
+
         container.appendChild(grid);
+
 
     } catch (error) {
 
@@ -1045,7 +1220,6 @@ async function loadMenu() {
 
 loadMenu();
 </script>
-
  
 </body>
 </html>
