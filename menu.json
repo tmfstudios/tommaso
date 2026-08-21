@@ -1,19 +1,10 @@
 {
-    "generated_at": "2026-08-21T19:48:09+00:00",
+    "generated_at": "2026-08-21T19:48:44+00:00",
     "categories": [
         {
             "id": 1,
             "name": "Appetizers",
             "items": [
-                {
-                    "id": 2,
-                    "name": "tester",
-                    "description": "",
-                    "price": 12,
-                    "photo": null,
-                    "dietary_tags": [],
-                    "available": true
-                },
                 {
                     "id": 5,
                     "name": "Bakes Clams (8)",
@@ -54,6 +45,15 @@
                     "id": 1,
                     "name": "Mussels",
                     "description": "choice of white or red sauce",
+                    "price": 15,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 2,
+                    "name": "Escargot",
+                    "description": "garlic, parsley, and butter",
                     "price": 15,
                     "photo": null,
                     "dietary_tags": [],
