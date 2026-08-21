@@ -795,276 +795,32 @@
 
  
  
-<script>
-
-const MENU_URL = "menu.json";
-
-async function loadMenu() {
-
-    const container = document.getElementById("menu");
-
-    try {
-
-        const response = await fetch(MENU_URL, {
-            cache: "no-store"
-        });
-
-        if (!response.ok) {
-            throw new Error(
-                "menu.json returned HTTP " + response.status
-            );
-        }
-
-        const menu = await response.json();
-
-        if (!menu.categories) {
-            throw new Error("No categories found in menu.json");
-        }
-
-        container.innerHTML = "";
-
-        menu.categories.forEach(category => {
-
-            const section = document.createElement("section");
-            section.className = "category";
-
-            const heading = document.createElement("h2");
-            heading.textContent = category.name;
-
-            section.appendChild(heading);
-
-            if (!category.items) {
-                return;
-            }
-
-            category.items.forEach(item => {
-
-                if (item.available === false) {
-                    return;
-                }
-
-                const row = document.createElement("div");
-                row.className = "item";
-
-                const info = document.createElement("div");
-                info.className = "item-info";
-
-                const name = document.createElement("div");
-                name.className = "item-name";
-                name.textContent = item.name;
-
-                info.appendChild(name);
-
-                if (item.description) {
-
-                    const description =
-                        document.createElement("div");
-
-                    description.className = "description";
-                    description.textContent = item.description;
-
-                    info.appendChild(description);
-                }
-
-                if (
-                    item.dietary_tags &&
-                    item.dietary_tags.length
-                ) {
-
-                    const tags =
-                        document.createElement("div");
-
-                    tags.className = "tags";
-
-                    item.dietary_tags.forEach(tag => {
-
-                        const badge =
-                            document.createElement("span");
-
-                        badge.className = "tag";
-                        badge.textContent = tag;
-
-                        tags.appendChild(badge);
-                    });
-
-                    info.appendChild(tags);
-                }
-
-                row.appendChild(info);
-
-                if (item.photo) {
-
-                    const image =
-                        document.createElement("img");
-
-                    image.className = "photo";
-                    image.src = item.photo;
-                    image.alt = item.name;
-                    image.loading = "lazy";
-
-                    row.appendChild(image);
-                }
-
-                const price =
-                    document.createElement("div");
-
-                price.className = "price";
-
-                price.textContent =
-                    "$" + Number(item.price).toFixed(2);
-
-                row.appendChild(price);
-
-                section.appendChild(row);
-            });
-
-            container.appendChild(section);
-        });
-
-    } catch (error) {
-
-        console.error("Menu error:", error);
-
-        container.innerHTML = `
-            <div class="error">
-                <strong>Unable to load menu.</strong>
-                <br><br>
-                Please check that menu.json is accessible.
-            </div>
-        `;
-    }
-}
-
-loadMenu();
-
-</script>
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- <section class="menu-section" id="menu" aria-label="Menu">
-  <div class="menu-header">
-    <div class="menu-title-block">
-      <p class="section-eyebrow">The Menu</p>
-      <h2 class="section-title">Classics from the<br><em>Italian table.</em></h2>
-    </div>
-    <p class="menu-note">Menu changes seasonally. Ask your server about daily specials.</p>
-  </div>
+<section class="menu-section" id="menu">
 
-  <div class="menu-grid">
-    <div class="menu-category">
-      <h3 class="menu-cat-title">Antipasti</h3>
-      <ul class="menu-items">
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Burrata della Casa</p>
-            <p class="menu-item-desc">House-stretched, roasted peppers, aged balsamic</p>
-          </div>
-          <span class="menu-item-price">$18</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Polpo alla Griglia</p>
-            <p class="menu-item-desc">Grilled octopus, cannellini, olive oil</p>
-          </div>
-          <span class="menu-item-price">$24</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Antipasto Misto</p>
-            <p class="menu-item-desc">Cured meats, marinated vegetables, crostini</p>
-          </div>
-          <span class="menu-item-price">$22</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Zuppa del Giorno</p>
-            <p class="menu-item-desc">Soup of the day</p>
-          </div>
-          <span class="menu-item-price">$14</span>
-        </li>
-      </ul>
+    <div class="menu-header">
+
+        <div class="menu-title-block">
+            <div class="section-eyebrow">The Menu</div>
+            <h2 class="section-title">
+                Classics from the<br>
+                Italian table.
+            </h2>
+        </div>
+
+        <div class="menu-note">
+            Menu changes seasonally.
+            Ask your server about daily specials.
+        </div>
+
     </div>
 
-    <div class="menu-category">
-      <h3 class="menu-cat-title">Primi — Pasta</h3>
-      <ul class="menu-items">
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Papadella al Coniglio</p>
-            <p class="menu-item-desc">Wide pasta, braised rabbit, rosemary</p>
-          </div>
-          <span class="menu-item-price">$34</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Spaghetti Bolognese</p>
-            <p class="menu-item-desc">Slow-cooked beef & pork ragù, Parmigiano</p>
-          </div>
-          <span class="menu-item-price">$28</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Fettuccine Cinghiale</p>
-            <p class="menu-item-desc">Wild boar ragù, fresh herbs</p>
-          </div>
-          <span class="menu-item-price">$36</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Polenta Abruzzese</p>
-            <p class="menu-item-desc">Creamy polenta, sausage, Sunday gravy</p>
-          </div>
-          <span class="menu-item-price">$30</span>
-        </li>
-      </ul>
+    <!-- JSON MENU GOES HERE -->
+    <div id="menu-container">
+        <div class="menu-loading">
+            Loading menu...
+        </div>
     </div>
-
-    <div class="menu-category">
-      <h3 class="menu-cat-title">Secondi & Dolci</h3>
-      <ul class="menu-items">
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Coda di Rospo Brasata</p>
-            <p class="menu-item-desc">Braised monkfish, tomato, capers</p>
-          </div>
-          <span class="menu-item-price">$42</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Tiramisù</p>
-            <p class="menu-item-desc">Classic, mascarpone, espresso-soaked ladyfingers</p>
-          </div>
-          <span class="menu-item-price">$12</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Tartufo</p>
-            <p class="menu-item-desc">Chocolate gelato, dark chocolate shell</p>
-          </div>
-          <span class="menu-item-price">$12</span>
-        </li>
-        <li class="menu-item">
-          <div>
-            <p class="menu-item-name">Semifreddo al Caramello</p>
-            <p class="menu-item-desc">Semi-frozen dessert, salted caramel</p>
-          </div>
-          <span class="menu-item-price">$14</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-
   <div class="menu-cta">
     <a href="mailto:tom@tommasoinbrooklyn.com" class="btn-ghost">Inquire About Private Dining</a>
   </div>
