@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T20:03:45+00:00",
+    "generated_at": "2026-08-21T20:04:05+00:00",
     "categories": [
         {
             "id": 1,
@@ -138,6 +138,15 @@
                     "id": 15,
                     "name": "Pasta Fagioli",
                     "description": "mixed pasta and cannellini beans",
+                    "price": 12,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 16,
+                    "name": "Escarole & Beans",
+                    "description": "cannellini beans",
                     "price": 12,
                     "photo": null,
                     "dietary_tags": [],
