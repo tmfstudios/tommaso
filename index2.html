@@ -347,18 +347,20 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1px;
-    background: rgba(245,240,232,0.08);
+    gap: 0;
+    background: transparent;
 }
 
 .menu-category {
     background: var(--espresso);
-    padding: 2.5rem;
-    border: 1px solid rgba(245,240,232,0.08);
+    padding: 2.5rem 2.5rem 3rem;
+    border: 0;
+    border-right: 1px solid rgba(245,240,232,0.08);
+    border-bottom: 1px solid rgba(245,240,232,0.08);
 
-    /* 3 categories per row */
-    flex: 0 0 calc(33.333% - 1px);
+    flex: 0 0 33.333333%;
 }
+
   .menu-cat-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
