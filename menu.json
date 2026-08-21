@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:50:49+00:00",
+    "generated_at": "2026-08-21T19:51:24+00:00",
     "categories": [
         {
             "id": 1,
@@ -72,6 +72,15 @@
                     "id": 8,
                     "name": "Stuffed Artichoke",
                     "description": "breadcrumbs, garlic, and pecorino romano cheese",
+                    "price": 16,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 9,
+                    "name": "Prosciutto",
+                    "description": "fresh mozzarella, gaeta olives",
                     "price": 16,
                     "photo": null,
                     "dietary_tags": [],
