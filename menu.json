@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:55:12+00:00",
+    "generated_at": "2026-08-21T20:00:08+00:00",
     "categories": [
         {
             "id": 1,
@@ -115,6 +115,15 @@
                     "name": "Arugula Salad",
                     "description": "goat cheese, walnuts, raisins, house dressing",
                     "price": 14,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 13,
+                    "name": "Seafood Salad",
+                    "description": "calamari, octopus, scungilli, shrimp, celery, and olive oil",
+                    "price": 22,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
