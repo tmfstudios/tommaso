@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T20:01:13+00:00",
+    "generated_at": "2026-08-21T20:01:25+00:00",
     "categories": [
         {
             "id": 1,
@@ -10,15 +10,6 @@
                     "name": "Bakes Clams (8)",
                     "description": "little necks, oreganata",
                     "price": 14,
-                    "photo": null,
-                    "dietary_tags": [],
-                    "available": true
-                },
-                {
-                    "id": 14,
-                    "name": "Lentils & Escarole",
-                    "description": "",
-                    "price": 12,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
@@ -142,7 +133,17 @@
         {
             "id": 4,
             "name": "Soup",
-            "items": []
+            "items": [
+                {
+                    "id": 14,
+                    "name": "Lentils & Escarole",
+                    "description": "",
+                    "price": 12,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
         },
         {
             "id": 8,
