@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:48:44+00:00",
+    "generated_at": "2026-08-21T19:49:42+00:00",
     "categories": [
         {
             "id": 1,
@@ -58,6 +58,15 @@
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
+                },
+                {
+                    "id": 6,
+                    "name": "Cold Antipasto",
+                    "description": "mozzarella, provolone, caponata, zucchini, roasted red peppers, sweet pepper stuffed w/ tuna, and soppressata",
+                    "price": 15,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
                 }
             ]
         },
@@ -84,17 +93,7 @@
         {
             "id": 3,
             "name": "Pork",
-            "items": [
-                {
-                    "id": 6,
-                    "name": "fdsfa",
-                    "description": "fdsfa",
-                    "price": 13,
-                    "photo": null,
-                    "dietary_tags": [],
-                    "available": true
-                }
-            ]
+            "items": []
         },
         {
             "id": 6,
