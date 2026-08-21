@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:34:43+00:00",
+    "generated_at": "2026-08-21T19:46:34+00:00",
     "categories": [
         {
             "id": 1,
@@ -7,8 +7,8 @@
             "items": [
                 {
                     "id": 4,
-                    "name": "round 2",
-                    "description": "example",
+                    "name": "Stuffed Mushrooms",
+                    "description": "breadcrumbs, swiss cheese, and marinara sauce",
                     "price": 14,
                     "photo": null,
                     "dietary_tags": [],
