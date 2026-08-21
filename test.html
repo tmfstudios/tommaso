@@ -1,15 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Test</title>
 
-  
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .category {
+            margin-bottom: 35px;
+        }
+
+        .category h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 8px;
+        }
+
+        .item {
+            margin: 20px 0;
+        }
+
+        .item-name {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .price {
+            float: right;
+            font-weight: bold;
+        }
+
+        .description {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .error {
+            color: red;
+            padding: 15px;
+            background: #ffecec;
+        }
+
+        .updated {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <!-- Your existing website -->
+    <h1>Restaurant Menu</h1>
 
-    <section class="menu-section">
-        <div id="restaurant-menu"></div>
-    </section>
+    <div id="menu">
+        Loading menu...
+    </div>
 
-    <script src="js/menu.js"></script>
+    <script>
+        const MENU_URL = 'https://masomenu.ifree.page/menu.json';
+
+        async function loadMenu() {
+            const menuContainer = document.getElementById('menu');
+
+            try {
+                const response = await fetch(MENU_URL);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const menu = await response.json();
+
+                let html = '';
+
+                if (menu.updated_at) {
+                    const date = new Date(menu.updated_at);
+
+                    html += `
+                        <div class="updated">
+                            Menu updated: ${date.toLocaleString()}
+                        </div>
+                    `;
+                }
+
+                if (!menu.categories || menu.categories.length === 0) {
+                    html += '<p>No menu items available.</p>';
+                }
+
+                menu.categories.forEach(category => {
+
+                    html += `
+                        <div class="category">
+                            <h2>${escapeHtml(category.name)}</h2>
+                    `;
+
+                    if (category.description) {
+                        html += `
+                            <p>${escapeHtml(category.description)}</p>
+                        `;
+                    }
+
+                    category.items.forEach(item => {
+
+                        if (item.available === false) {
+                            return;
+                        }
+
+                        html += `
+                            <div class="item">
+                                <span class="item-name">
+                                    ${escapeHtml(item.name)}
+                                </span>
+
+                                <span class="price">
+                                    $${escapeHtml(item.price)}
+                                </span>
+
+                                <div class="description">
+                                    ${escapeHtml(item.description || '')}
+                                </div>
+                            </div>
+                        `;
+                    });
+
+                    html += '</div>';
+                });
+
+                menuContainer.innerHTML = html;
+
+            } catch (error) {
+
+                console.error(error);
+
+                menuContainer.innerHTML = `
+                    <div class="error">
+                        Unable to load the menu.
+                        <br>
+                        Error: ${escapeHtml(error.message)}
+                    </div>
+                `;
+            }
+        }
+
+        function escapeHtml(value) {
+            const div = document.createElement('div');
+            div.textContent = value ?? '';
+            return div.innerHTML;
+        }
+
+        loadMenu();
+    </script>
+
 </body>
+</html>
