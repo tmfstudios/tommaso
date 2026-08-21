@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:47:44+00:00",
+    "generated_at": "2026-08-21T19:48:09+00:00",
     "categories": [
         {
             "id": 1,
@@ -52,9 +52,9 @@
                 },
                 {
                     "id": 1,
-                    "name": "Fresh Mozzarella, Tomatoes & Roasted Red Peppers",
-                    "description": "",
-                    "price": 14,
+                    "name": "Mussels",
+                    "description": "choice of white or red sauce",
+                    "price": 15,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
