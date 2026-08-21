@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T17:55:15+00:00",
+    "generated_at": "2026-08-21T18:00:20+00:00",
     "categories": [
         {
             "id": 1,
@@ -12,7 +12,7 @@
                     "price": 12,
                     "photo": null,
                     "dietary_tags": [],
-                    "available": true
+                    "available": false
                 },
                 {
                     "id": 3,
