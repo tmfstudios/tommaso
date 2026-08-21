@@ -1,19 +1,10 @@
 {
-    "generated_at": "2026-08-21T19:34:38+00:00",
+    "generated_at": "2026-08-21T19:34:43+00:00",
     "categories": [
         {
             "id": 1,
             "name": "Appetizers",
             "items": [
-                {
-                    "id": 3,
-                    "name": "Baby Meatballs",
-                    "description": "beef & pork blend, tomato sauceexample",
-                    "price": 14,
-                    "photo": null,
-                    "dietary_tags": [],
-                    "available": true
-                },
                 {
                     "id": 4,
                     "name": "round 2",
@@ -45,6 +36,15 @@
                     "id": 5,
                     "name": "Bakes Clams (8)",
                     "description": "little necks, oreganata",
+                    "price": 14,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 3,
+                    "name": "Baby Meatballs",
+                    "description": "beef & pork blend, tomato sauceexample",
                     "price": 14,
                     "photo": null,
                     "dietary_tags": [],
