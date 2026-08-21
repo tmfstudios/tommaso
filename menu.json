@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T18:11:01+00:00",
+    "generated_at": "2026-08-21T18:20:48+00:00",
     "categories": [
         {
             "id": 1,
@@ -46,6 +46,31 @@
                     "name": "tester",
                     "description": "",
                     "price": 12,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "test2",
+            "items": []
+        },
+        {
+            "id": 4,
+            "name": "test4",
+            "items": []
+        },
+        {
+            "id": 3,
+            "name": "test3",
+            "items": [
+                {
+                    "id": 6,
+                    "name": "fdsfa",
+                    "description": "fdsfa",
+                    "price": 13,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
