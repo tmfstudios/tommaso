@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T19:46:44+00:00",
+    "generated_at": "2026-08-21T19:47:19+00:00",
     "categories": [
         {
             "id": 1,
@@ -45,6 +45,15 @@
                     "id": 4,
                     "name": "Stuffed Mushrooms",
                     "description": "breadcrumbs, swiss cheese, and marinara sauce",
+                    "price": 14,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 7,
+                    "name": "Spiedini alla Romana",
+                    "description": "pan fried mozzarella w/ capers, anchovies, olives, and sun dried tomatoes",
                     "price": 14,
                     "photo": null,
                     "dietary_tags": [],
