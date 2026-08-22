@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:17:56+00:00",
+    "generated_at": "2026-08-22T03:21:55+00:00",
     "categories": [
         {
             "id": 1,
@@ -254,6 +254,15 @@
                 {
                     "id": 19,
                     "name": "Veal Francese",
+                    "description": "served with roasted potato, escarole & carrots",
+                    "price": 28,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 27,
+                    "name": "Veal Marsala",
                     "description": "served with roasted potato, escarole & carrots",
                     "price": 28,
                     "photo": null,
