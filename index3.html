@@ -344,12 +344,11 @@
   }
 
 .menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  align-items: start;
+    position: relative;
+    width: 100%;
+    display: block;
 }
-
+ 
 .menu-column {
   display: flex;
   flex-direction: column;
@@ -357,13 +356,12 @@
 }
 
 .menu-category {
-  width: 100%;
-  padding: 2.5rem;
-  background: var(--espresso);
-  border: 1px solid rgba(245,240,232,0.12);
+    position: absolute;
+    box-sizing: border-box;
+    padding: 2.5rem;
+    background: var(--espresso);
+    border: 1px solid rgba(245,240,232,0.12);
 }
-
-
   .menu-cat-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.5rem;
@@ -944,99 +942,113 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
 
-    function layoutMenu() {
+function layoutMenu() {
 
-        const boxes = [
-            ...menuContainer.querySelectorAll(".menu-category")
-        ];
+    const boxes = [
+        ...menuContainer.querySelectorAll(".menu-category")
+    ];
 
-        if (!boxes.length) return;
+    if (!boxes.length) return;
 
-        /*
-         * Mobile = one column.
-         */
-if (window.innerWidth <= 900) {
+    /*
+     * MOBILE
+     * One column, top to bottom.
+     */
+    if (window.innerWidth <= 900) {
 
-    boxes.forEach(box => {
-        box.style.width = "100%";
-        box.style.left = "auto";
-        box.style.top = "auto";
-        box.style.position = "relative";
-    });
+        let y = 0;
 
-    menuContainer.style.height = "auto";
+        boxes.forEach(box => {
 
-    return;
-}
+            box.style.position = "absolute";
+            box.style.width = "100%";
+            box.style.left = "0px";
+            box.style.top = y + "px";
 
-        /*
-         * Desktop = three masonry columns.
-         */
-        const gap = 16;
-
-        const containerWidth =
-            menuContainer.clientWidth;
-
-        const columnWidth =
-            (containerWidth - gap * 2) / 3;
-
-
-        /*
-         * Track the bottom of each column.
-         */
-        const columnHeights = [0, 0, 0];
-
-
-        boxes.forEach((box, index) => {
-
-            /*
-             * Determine the column from the
-             * original menu order.
-             *
-             * 1 → column 1
-             * 2 → column 2
-             * 3 → column 3
-             * 4 → column 1
-             * 5 → column 2
-             * 6 → column 3
-             */
-            const column = index % 3;
-
-            const left =
-                column * (columnWidth + gap);
-
-            const top =
-                columnHeights[column];
-
-
-            box.style.width =
-                columnWidth + "px";
-
-            box.style.left =
-                left + "px";
-
-            box.style.top =
-                top + "px";
-
-
-            /*
-             * Update the height of this column.
-             */
-            columnHeights[column] =
-                top + box.offsetHeight + gap;
+            y += box.offsetHeight + 16;
         });
 
+        menuContainer.style.height =
+            Math.max(0, y - 16) + "px";
+
+        return;
+    }
+
+
+    /*
+     * DESKTOP
+     * Three independent columns.
+     */
+
+    const gap = 16;
+
+    const containerWidth =
+        menuContainer.clientWidth;
+
+    const columnWidth =
+        (containerWidth - gap * 2) / 3;
+
+
+    /*
+     * Track the bottom of EACH column independently.
+     */
+    const columnHeights = [0, 0, 0];
+
+
+    boxes.forEach((box, index) => {
 
         /*
-         * The container needs a height because
-         * the boxes are absolutely positioned.
+         * 1 → column 1
+         * 2 → column 2
+         * 3 → column 3
+         * 4 → column 1
+         * 5 → column 2
+         * 6 → column 3
          */
-        const tallestColumn =
-            Math.max(...columnHeights);
+        const column = index % 3;
 
-        menuContainer.style.height =
-            Math.max(0, tallestColumn - gap) + "px";
-    }
+
+        const left =
+            column * (columnWidth + gap);
+
+        const top =
+            columnHeights[column];
+
+
+        box.style.position = "absolute";
+
+        box.style.width =
+            columnWidth + "px";
+
+        box.style.left =
+            left + "px";
+
+        box.style.top =
+            top + "px";
+
+
+        /*
+         * IMPORTANT:
+         * The next box in THIS column
+         * starts immediately after this box.
+         */
+        columnHeights[column] =
+            top + box.offsetHeight + gap;
+
+    });
+
+
+    /*
+     * Set container height to the
+     * tallest column.
+     */
+    const tallestColumn =
+        Math.max(...columnHeights);
+
+    menuContainer.style.height =
+        Math.max(0, tallestColumn - gap) + "px";
+}
+ 
 
 });
 </script>
