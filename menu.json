@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:33:53+00:00",
+    "generated_at": "2026-08-22T03:34:34+00:00",
     "categories": [
         {
             "id": 1,
@@ -348,6 +348,15 @@
                     "name": "Red Snapper",
                     "description": "fillet, sun dried tomatoes, capers, olives, escarole & raisins",
                     "price": 34,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 38,
+                    "name": "Branzino",
+                    "description": "whole or fillet, white or red sauce",
+                    "price": 36,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
