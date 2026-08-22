@@ -585,6 +585,8 @@
     .menu-category { margin-bottom: 1rem; padding: 2rem 1.5rem; }
     .experience { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
     .exp-visual { height: 340px; }
+    .menu-grid { display: block; width: 100%; height: auto !important; }
+    .menu-category { width: 100% !important; position: relative !important; left: auto !important; top: auto !important; margin-bottom: 1rem; }
     .reservations { padding: 5rem 1.5rem; }
     .contact-grid { flex-direction: column; gap: 2rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2.5rem 1.5rem; }
@@ -953,25 +955,19 @@ document.addEventListener("DOMContentLoaded", async function () {
         /*
          * Mobile = one column.
          */
-        if (window.innerWidth <= 900) {
+if (window.innerWidth <= 900) {
 
-            let y = 0;
+    boxes.forEach(box => {
+        box.style.width = "100%";
+        box.style.left = "auto";
+        box.style.top = "auto";
+        box.style.position = "relative";
+    });
 
-            boxes.forEach(box => {
+    menuContainer.style.height = "auto";
 
-                box.style.width = "100%";
-                box.style.left = "0px";
-                box.style.top = y + "px";
-
-                y += box.offsetHeight + 16;
-            });
-
-            menuContainer.style.height =
-                Math.max(0, y - 16) + "px";
-
-            return;
-        }
-
+    return;
+}
 
         /*
          * Desktop = three masonry columns.
