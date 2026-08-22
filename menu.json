@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:36:30+00:00",
+    "generated_at": "2026-08-22T03:37:21+00:00",
     "categories": [
         {
             "id": 1,
@@ -334,6 +334,15 @@
                     "name": "Escarole",
                     "description": "",
                     "price": 12,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 43,
+                    "name": "Eggplant Parmigiana",
+                    "description": "served with spaghetti",
+                    "price": 22,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
