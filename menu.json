@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:35:43+00:00",
+    "generated_at": "2026-08-22T03:36:07+00:00",
     "categories": [
         {
             "id": 1,
@@ -314,6 +314,15 @@
                 {
                     "id": 40,
                     "name": "Broccoli Rabe",
+                    "description": "",
+                    "price": 12,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 41,
+                    "name": "Spinach",
                     "description": "",
                     "price": 12,
                     "photo": null,
