@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:33:05+00:00",
+    "generated_at": "2026-08-22T03:33:53+00:00",
     "categories": [
         {
             "id": 1,
@@ -339,6 +339,15 @@
                     "name": "Monkfish",
                     "description": "braised, lemon, white wine, garlic, fresh tomato",
                     "price": 30,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 37,
+                    "name": "Red Snapper",
+                    "description": "fillet, sun dried tomatoes, capers, olives, escarole & raisins",
+                    "price": 34,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
