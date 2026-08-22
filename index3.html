@@ -214,16 +214,6 @@
   }
 
   /* ─── SECTION: STORY ─── */
-.story-image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 4px;
-}
-
-.story-content {
-  max-width: 560px;
-}
   .story {
     padding: 8rem 4rem;
     display: grid;
@@ -231,6 +221,8 @@
     gap: 6rem;
     align-items: center;
   }
+
+  .story-content {}
 
   .section-eyebrow {
     font-size: 0.65rem;
@@ -674,33 +666,20 @@
 </section>
 
 <!-- STORY -->
-<section class="story" id="story">
-  <div class="story-image">
-    <img src="founder.jpg" alt="Tommaso founder in the restaurant">
-  </div>
-
+<section class="story" id="story" aria-label="Our story">
   <div class="story-content">
-    <p class="eyebrow">Our Story</p>
-
-    <h2>Born from a mother's<br>love for feeding people.</h2>
-
-    <p>
-      After losing his beloved mother, Thomas Verdillo opened Tommaso as a
-      living tribute — carrying on her joy for cooking, her generosity, and
-      her belief that a great meal is an act of love.
+    <p class="section-eyebrow">Our Story</p>
+    <h2 class="section-title">Born from a mother's<br><em>love for feeding people.</em></h2>
+    <p class="section-body">
+      After losing his beloved mother, Thomas Verdillo opened Tommaso as a living tribute — carrying on her joy for cooking, her generosity, and her belief that a great meal is an act of love.
     </p>
-
-    <p>
-      For over five decades, Tommaso has been the heartbeat of Bensonhurst:
-      a place where neighbors become regulars, and regulars become family.
-      From hand-rolled pasta to house-made mozzarella, every dish is a
-      memory made edible.
+    <p class="section-body">
+      For over five decades, Tommaso has been the heartbeat of Bensonhurst: a place where neighbors become regulars, and regulars become family. From hand-rolled pasta to house-made mozzarella, every dish is a memory made edible.
     </p>
-
-    <a href="#contact" class="story-link">Join Us for Dinner</a>
+    <a href="#reservations" class="btn-secondary">Join Us for Dinner</a>
   </div>
 
- <div class="story-visual" aria-hidden="true">
+  <div class="story-visual" aria-hidden="true">
     <div class="story-card story-card-main">
       <p class="year">1969</p>
       <p class="year-label">Founded in Brooklyn</p>
