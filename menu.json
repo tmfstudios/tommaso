@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:09:08+00:00",
+    "generated_at": "2026-08-22T03:10:10+00:00",
     "categories": [
         {
             "id": 1,
@@ -190,6 +190,15 @@
                     "name": "Chicken Francese",
                     "description": "served with roasted potato, escarole & carrots",
                     "price": 24,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 23,
+                    "name": "Chicken Capricciosa",
+                    "description": "milanese, topped with house salad",
+                    "price": 26,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
