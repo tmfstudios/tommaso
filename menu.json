@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:15:39+00:00",
+    "generated_at": "2026-08-22T03:16:23+00:00",
     "categories": [
         {
             "id": 1,
@@ -229,8 +229,8 @@
                 },
                 {
                     "id": 25,
-                    "name": "Grilled Pork Chops (2)",
-                    "description": "hot cherry peppers, brown sauce",
+                    "name": "Stuffed Pork Chop",
+                    "description": "breaded, prosciutto, fontina cheese, topped with mushrooms and onions, brown sauce",
                     "price": 30,
                     "photo": null,
                     "dietary_tags": [],
