@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:04:22+00:00",
+    "generated_at": "2026-08-22T03:08:25+00:00",
     "categories": [
         {
             "id": 1,
@@ -175,18 +175,12 @@
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
-                }
-            ]
-        },
-        {
-            "id": 5,
-            "name": "Beef",
-            "items": [
+                },
                 {
-                    "id": 20,
-                    "name": "Sausage",
-                    "description": "hot and sweet, broccoli rabe",
-                    "price": 26,
+                    "id": 21,
+                    "name": "Chicken Marsala",
+                    "description": "served with roasted potato, escarole & carrots",
+                    "price": 24,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
@@ -217,6 +211,21 @@
                     "name": "Veal Francese",
                     "description": "served with roasted potato, escarole & carrots",
                     "price": 28,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Beef",
+            "items": [
+                {
+                    "id": 20,
+                    "name": "Sausage",
+                    "description": "hot and sweet, broccoli rabe",
+                    "price": 26,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
