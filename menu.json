@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:34:34+00:00",
+    "generated_at": "2026-08-22T03:35:17+00:00",
     "categories": [
         {
             "id": 1,
@@ -356,6 +356,15 @@
                     "id": 38,
                     "name": "Branzino",
                     "description": "whole or fillet, white or red sauce",
+                    "price": 36,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 39,
+                    "name": "Shrimp",
+                    "description": "scampi, francese, oreganata, or parmigiana",
                     "price": 36,
                     "photo": null,
                     "dietary_tags": [],
