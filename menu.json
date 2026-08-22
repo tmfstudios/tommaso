@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:23:47+00:00",
+    "generated_at": "2026-08-22T03:24:35+00:00",
     "categories": [
         {
             "id": 1,
@@ -292,6 +292,15 @@
                     "name": "Veal Ossobuco",
                     "description": "noodles, brown sauce",
                     "price": 42,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 31,
+                    "name": "Spiedini al Siciliana",
+                    "description": "veal rolls on skewer, onion, breadcrumbs, pine nuts, raisins, white wine sauce",
+                    "price": 32,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
