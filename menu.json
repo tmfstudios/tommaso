@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T02:45:32+00:00",
+    "generated_at": "2026-08-22T03:04:22+00:00",
     "categories": [
         {
             "id": 1,
@@ -181,7 +181,17 @@
         {
             "id": 5,
             "name": "Beef",
-            "items": []
+            "items": [
+                {
+                    "id": 20,
+                    "name": "Sausage",
+                    "description": "hot and sweet, broccoli rabe",
+                    "price": 26,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
         },
         {
             "id": 3,
