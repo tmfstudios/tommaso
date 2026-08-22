@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:22:35+00:00",
+    "generated_at": "2026-08-22T03:23:11+00:00",
     "categories": [
         {
             "id": 1,
@@ -273,6 +273,15 @@
                     "id": 28,
                     "name": "Veal Parmigiana",
                     "description": "served with spaghetti",
+                    "price": 28,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 29,
+                    "name": "Veal Rollatini",
+                    "description": "pancetta, fontina, mushroom sauce",
                     "price": 28,
                     "photo": null,
                     "dietary_tags": [],
