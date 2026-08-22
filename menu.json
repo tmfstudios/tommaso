@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:32:30+00:00",
+    "generated_at": "2026-08-22T03:33:05+00:00",
     "categories": [
         {
             "id": 1,
@@ -330,6 +330,15 @@
                     "name": "Flounder",
                     "description": "fillet, francese or oreganata",
                     "price": 26,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 36,
+                    "name": "Monkfish",
+                    "description": "braised, lemon, white wine, garlic, fresh tomato",
+                    "price": 30,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
