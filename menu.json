@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:28:52+00:00",
+    "generated_at": "2026-08-22T03:29:46+00:00",
     "categories": [
         {
             "id": 1,
@@ -343,7 +343,17 @@
         {
             "id": 9,
             "name": "Fish",
-            "items": []
+            "items": [
+                {
+                    "id": 34,
+                    "name": "Salmon",
+                    "description": "broiled, white wine, lemon",
+                    "price": 26,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
         },
         {
             "id": 7,
