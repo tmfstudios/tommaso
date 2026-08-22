@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T02:42:40+00:00",
+    "generated_at": "2026-08-22T02:43:19+00:00",
     "categories": [
         {
             "id": 1,
@@ -186,7 +186,17 @@
         {
             "id": 3,
             "name": "Pork",
-            "items": []
+            "items": [
+                {
+                    "id": 18,
+                    "name": "Pork Cutlets",
+                    "description": "breaded, gorgonzola sauce",
+                    "price": 26,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
         },
         {
             "id": 6,
