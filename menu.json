@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:29:46+00:00",
+    "generated_at": "2026-08-22T03:32:30+00:00",
     "categories": [
         {
             "id": 1,
@@ -308,6 +308,35 @@
             ]
         },
         {
+            "id": 7,
+            "name": "Sauetéed Vegetables",
+            "items": []
+        },
+        {
+            "id": 9,
+            "name": "Fish",
+            "items": [
+                {
+                    "id": 34,
+                    "name": "Salmon",
+                    "description": "broiled, white wine, lemon",
+                    "price": 26,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 35,
+                    "name": "Flounder",
+                    "description": "fillet, francese or oreganata",
+                    "price": 26,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
+        },
+        {
             "id": 5,
             "name": "Beef",
             "items": [
@@ -339,26 +368,6 @@
                     "available": true
                 }
             ]
-        },
-        {
-            "id": 9,
-            "name": "Fish",
-            "items": [
-                {
-                    "id": 34,
-                    "name": "Salmon",
-                    "description": "broiled, white wine, lemon",
-                    "price": 26,
-                    "photo": null,
-                    "dietary_tags": [],
-                    "available": true
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "name": "Sauetéed Vegetables",
-            "items": []
         }
     ]
 }
