@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:35:17+00:00",
+    "generated_at": "2026-08-22T03:35:43+00:00",
     "categories": [
         {
             "id": 1,
@@ -310,7 +310,17 @@
         {
             "id": 7,
             "name": "Sauetéed Vegetables",
-            "items": []
+            "items": [
+                {
+                    "id": 40,
+                    "name": "Broccoli Rabe",
+                    "description": "",
+                    "price": 12,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
         },
         {
             "id": 9,
