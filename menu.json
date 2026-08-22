@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:11:03+00:00",
+    "generated_at": "2026-08-22T03:15:39+00:00",
     "categories": [
         {
             "id": 1,
@@ -223,6 +223,15 @@
                     "name": "Pork Cutlets",
                     "description": "breaded, gorgonzola sauce",
                     "price": 26,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 25,
+                    "name": "Grilled Pork Chops (2)",
+                    "description": "hot cherry peppers, brown sauce",
+                    "price": 30,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
