@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:28:07+00:00",
+    "generated_at": "2026-08-22T03:28:52+00:00",
     "categories": [
         {
             "id": 1,
@@ -325,6 +325,15 @@
                     "name": "Short Ribs",
                     "description": "braised, mashed potatoes",
                     "price": 30,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 33,
+                    "name": "Ribeye Steak",
+                    "description": "topped with mushrooms & onions, potato croquette",
+                    "price": 36,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
