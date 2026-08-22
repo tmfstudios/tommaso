@@ -797,89 +797,250 @@
   </p>
 </footer>
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", async function () {
 
     const menuContainer = document.getElementById("menu-content");
 
-    fetch("/menu.json")
-        .then(response => {
-            if (!response.ok) {
-                throw new Error("Could not load menu.json");
-            }
+    if (!menuContainer) {
+        console.error("Menu container not found.");
+        return;
+    }
 
-            return response.json();
-        })
+    try {
 
-        .then(menu => {
+        const response = await fetch("/menu.json", {
+            cache: "no-store"
+        });
 
-            menuContainer.innerHTML = "";
+        if (!response.ok) {
+            throw new Error(
+                `Could not load menu.json (${response.status})`
+            );
+        }
 
-            menu.categories.forEach(category => {
+        const menu = await response.json();
 
-                // Don't display empty categories
-                const availableItems = category.items.filter(
+        if (!Array.isArray(menu.categories)) {
+            throw new Error("Invalid menu.json format.");
+        }
+
+        /*
+         * Remove categories that have no available dishes.
+         */
+        const categories = menu.categories.filter(category => {
+
+            return Array.isArray(category.items) &&
+                category.items.some(
                     item => item.available !== false
                 );
 
-                if (availableItems.length === 0) {
-                    return;
-                }
+        });
 
-                const categoryHTML = `
-                    <div class="menu-category">
+        /*
+         * Create the category boxes.
+         */
+        categories.forEach(category => {
 
-                        <h3>${escapeHTML(category.name)}</h3>
+            const box = document.createElement("div");
 
-                        ${availableItems.map(item => `
-                            <div class="menu-item">
+            box.className = "menu-category";
 
-                                <div class="menu-item-info">
+            const title = document.createElement("h3");
 
-                                    <h4>
-                                        ${escapeHTML(item.name)}
-                                    </h4>
+            title.className = "menu-cat-title";
+            title.textContent = category.name || "";
 
-                                    ${
-                                        item.description
-                                            ? `<p>${escapeHTML(item.description)}</p>`
-                                            : ""
-                                    }
+            const items = document.createElement("ul");
 
-                                </div>
+            items.className = "menu-items";
 
-                                <div class="menu-item-price">
-                                    $${Number(item.price).toFixed(0)}
-                                </div>
+            category.items
+                .filter(item => item.available !== false)
+                .forEach(item => {
 
-                            </div>
-                        `).join("")}
+                    const li = document.createElement("li");
 
-                    </div>
-                `;
+                    li.className = "menu-item";
 
-                menuContainer.insertAdjacentHTML(
-                    "beforeend",
-                    categoryHTML
-                );
+                    const info = document.createElement("div");
+
+                    const name = document.createElement("p");
+
+                    name.className = "menu-item-name";
+                    name.textContent = item.name || "";
+
+                    info.appendChild(name);
+
+                    if (item.description) {
+
+                        const description =
+                            document.createElement("p");
+
+                        description.className =
+                            "menu-item-desc";
+
+                        description.textContent =
+                            item.description;
+
+                        info.appendChild(description);
+                    }
+
+                    const price =
+                        document.createElement("span");
+
+                    price.className =
+                        "menu-item-price";
+
+                    if (
+                        item.price !== undefined &&
+                        item.price !== null &&
+                        item.price !== ""
+                    ) {
+                        price.textContent =
+                            "$" + Number(item.price).toFixed(0);
+                    }
+
+                    li.appendChild(info);
+                    li.appendChild(price);
+
+                    items.appendChild(li);
+                });
+
+            box.appendChild(title);
+            box.appendChild(items);
+
+            menuContainer.appendChild(box);
+        });
+
+        /*
+         * Wait until the browser has calculated
+         * the height of every box.
+         */
+        requestAnimationFrame(layoutMenu);
+
+        /*
+         * Re-layout after fonts have loaded.
+         */
+        if (document.fonts) {
+            document.fonts.ready.then(layoutMenu);
+        }
+
+        /*
+         * Re-layout when the browser changes size.
+         */
+        window.addEventListener("resize", layoutMenu);
+
+    } catch (error) {
+
+        console.error("Menu loading error:", error);
+
+        menuContainer.innerHTML = `
+            <p>
+                We're sorry, the menu is temporarily unavailable.
+                Please call us for today's menu.
+            </p>
+        `;
+    }
+
+
+    function layoutMenu() {
+
+        const boxes = [
+            ...menuContainer.querySelectorAll(".menu-category")
+        ];
+
+        if (!boxes.length) return;
+
+        /*
+         * Mobile = one column.
+         */
+        if (window.innerWidth <= 900) {
+
+            let y = 0;
+
+            boxes.forEach(box => {
+
+                box.style.width = "100%";
+                box.style.left = "0px";
+                box.style.top = y + "px";
+
+                y += box.offsetHeight + 16;
             });
-        })
 
-        .catch(error => {
-            console.error("Menu loading error:", error);
+            menuContainer.style.height =
+                Math.max(0, y - 16) + "px";
 
-            menuContainer.innerHTML = `
-                <p>Menu temporarily unavailable.</p>
-            `;
+            return;
+        }
+
+
+        /*
+         * Desktop = three masonry columns.
+         */
+        const gap = 16;
+
+        const containerWidth =
+            menuContainer.clientWidth;
+
+        const columnWidth =
+            (containerWidth - gap * 2) / 3;
+
+
+        /*
+         * Track the bottom of each column.
+         */
+        const columnHeights = [0, 0, 0];
+
+
+        boxes.forEach((box, index) => {
+
+            /*
+             * Determine the column from the
+             * original menu order.
+             *
+             * 1 → column 1
+             * 2 → column 2
+             * 3 → column 3
+             * 4 → column 1
+             * 5 → column 2
+             * 6 → column 3
+             */
+            const column = index % 3;
+
+            const left =
+                column * (columnWidth + gap);
+
+            const top =
+                columnHeights[column];
+
+
+            box.style.width =
+                columnWidth + "px";
+
+            box.style.left =
+                left + "px";
+
+            box.style.top =
+                top + "px";
+
+
+            /*
+             * Update the height of this column.
+             */
+            columnHeights[column] =
+                top + box.offsetHeight + gap;
         });
 
 
-    function escapeHTML(value) {
-        return String(value)
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+        /*
+         * The container needs a height because
+         * the boxes are absolutely positioned.
+         */
+        const tallestColumn =
+            Math.max(...columnHeights);
+
+        menuContainer.style.height =
+            Math.max(0, tallestColumn - gap) + "px";
     }
 
 });
