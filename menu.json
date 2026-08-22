@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-21T20:04:55+00:00",
+    "generated_at": "2026-08-22T02:42:30+00:00",
     "categories": [
         {
             "id": 1,
@@ -166,7 +166,17 @@
         {
             "id": 8,
             "name": "Chicken",
-            "items": []
+            "items": [
+                {
+                    "id": 17,
+                    "name": "Chicken Parmigiana",
+                    "description": "served with spaghetti",
+                    "price": 24,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                }
+            ]
         },
         {
             "id": 5,
