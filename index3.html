@@ -570,11 +570,72 @@
 
   footer a:hover { color: var(--cream); }
 
-  /* ─── MOBILE ─── */
+/* ─── MOBILE NAV BUTTONS ─── */
+
+.nav-mobile-buttons {
+  display: none;
+}
+
+.nav-hamburger {
+  border: none;
+  background: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--espresso);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.nav-menu-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--espresso);
+  padding: 0.6rem 1.2rem;
+  min-height: 42px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.nav-menu-button:hover {
+  background: var(--terracotta);
+}
+ 
+ /* ─── MOBILE ─── */
 
  @media (max-width: 900px) {
-    nav { padding: 1rem 1.5rem; }
+    nav { padding: 0.75rem 1rem; }
     .nav-links { display: none; }
+    .nav-mobile-buttons { display: flex; align-items: center; gap: 0.35rem; }
     .hero { grid-template-columns: 1fr; min-height: auto; }
     .hero-text { padding: 5rem 1.5rem 3rem; }
     .hero-image { display: none; }
@@ -642,16 +703,25 @@
 <!-- NAV -->
 <nav aria-label="Main navigation">
   <a href="#" class="nav-logo">Tommaso</a>
+
   <ul class="nav-links">
     <li><a href="#story">Our Story</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#reservations">Contact</a></li>
   </ul>
-  <a href="tel:7184840028" class="nav-reserve">Call to Reserve</a>
-</nav>
 
-<!-- HERO -->
+  <div class="nav-mobile-buttons">
+    <a href="#menu" class="nav-menu-button">Menu</a>
+    <button class="nav-hamburger" aria-label="Open navigation menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+ 
+ <!-- HERO -->
 <section class="hero" aria-label="Welcome">
   <div class="hero-text">
     <p class="hero-eyebrow">Est. 1969 · Bensonhurst, Brooklyn</p>
@@ -979,11 +1049,13 @@ title.addEventListener("click", function () {
 
                 // Scroll the opened category into view
                 setTimeout(() => {
-                    box.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-                }, 50);
+const navHeight = document.querySelector("nav").offsetHeight;
+const boxTop = box.getBoundingClientRect().top + window.scrollY;
+
+window.scrollTo({
+    top: boxTop - navHeight - 15,
+    behavior: "smooth"
+});                }, 50);
             });
         } else {
             requestAnimationFrame(layoutMenu);
@@ -1117,6 +1189,133 @@ title.addEventListener("click", function () {
             Math.max(0, tallestColumn - gap) + "px";
     }
 
+/* ─── MOBILE NAVIGATION ─── */
+
+const mobileMenuButton =
+    document.querySelector(".nav-menu-button");
+
+const hamburger =
+    document.querySelector(".nav-hamburger");
+
+const navLinks =
+    document.querySelector(".nav-links");
+
+if (mobileMenuButton) {
+    mobileMenuButton.addEventListener("click", function (event) {
+
+        event.preventDefault();
+
+        const menuSection =
+            document.getElementById("menu");
+
+        if (!menuSection) return;
+
+        /*
+         * Scroll to the menu.
+         */
+        menuSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+        /*
+         * Wait for the menu to reach the section,
+         * then open the first available category.
+         */
+        setTimeout(() => {
+
+            if (window.innerWidth <= 900) {
+
+                const firstCategory =
+                    document.querySelector(
+                        "#menu-content .menu-category"
+                    );
+
+                if (firstCategory) {
+
+                    const allCategories =
+                        document.querySelectorAll(
+                            "#menu-content .menu-category"
+                        );
+
+                    allCategories.forEach(category => {
+                        category.classList.remove("open");
+                    });
+
+                    firstCategory.classList.add("open");
+
+                    /*
+                     * Recalculate the menu layout after
+                     * opening the category.
+                     */
+                    requestAnimationFrame(() => {
+                        layoutMenu();
+
+                        setTimeout(() => {
+                            firstCategory.scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
+                        }, 100);
+                    });
+                }
+            }
+
+        }, 500);
+    });
+}
+
+if (hamburger) {
+    hamburger.addEventListener("click", function () {
+
+        const isOpen =
+            hamburger.classList.toggle("active");
+
+        hamburger.setAttribute(
+            "aria-expanded",
+            isOpen ? "true" : "false"
+        );
+
+        if (isOpen) {
+            navLinks.style.display = "flex";
+            navLinks.style.position = "absolute";
+            navLinks.style.top = "100%";
+            navLinks.style.left = "0";
+            navLinks.style.right = "0";
+            navLinks.style.flexDirection = "column";
+            navLinks.style.gap = "0";
+            navLinks.style.padding = "1rem 1.5rem";
+            navLinks.style.background =
+                "rgba(244, 247, 252, 0.98)";
+            navLinks.style.borderBottom =
+                "1px solid rgba(26,20,16,0.08)";
+
+            navLinks.querySelectorAll("a").forEach(link => {
+                link.style.display = "block";
+                link.style.padding = "0.75rem 0";
+            });
+
+        } else {
+            navLinks.style.display = "none";
+        }
+    });
+
+    /*
+     * Close mobile navigation when a link is selected.
+     */
+    navLinks.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function () {
+
+            hamburger.classList.remove("active");
+            hamburger.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+            navLinks.style.display = "none";
+        });
+    });
+} 
 });
 </script>
 
