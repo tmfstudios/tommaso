@@ -951,45 +951,69 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             menuContainer.appendChild(box);
 
+            /*
+             * MOBILE ACCORDION
+             *
+             * Tap a category to open it.
+             * Tapping another category closes the previous one.
+             */
+            title.addEventListener("click", function () {
 
-title.addEventListener("click", function () {
+                if (window.innerWidth <= 900) {
 
-    if (window.innerWidth <= 900) {
+                    const wasOpen =
+                        box.classList.contains("open");
 
-        const wasOpen = box.classList.contains("open");
+                    /*
+                     * Get all menu categories here.
+                     * This fixes the previous "boxes is not defined" error.
+                     */
+                    const allBoxes =
+                        menuContainer.querySelectorAll(
+                            ".menu-category"
+                        );
 
-        boxes.forEach(otherBox => {
-            otherBox.classList.remove("open");
-        });
+                    /*
+                     * Close all categories.
+                     */
+                    allBoxes.forEach(otherBox => {
+                        otherBox.classList.remove("open");
+                    });
 
-        if (!wasOpen) {
-            box.classList.add("open");
-        }
+                    /*
+                     * If the clicked category was closed,
+                     * open it.
+                     */
+                    if (!wasOpen) {
+                        box.classList.add("open");
+                    }
 
-        requestAnimationFrame(layoutMenu);
-    }
+                    /*
+                     * Recalculate positions and height.
+                     */
+                    requestAnimationFrame(function () {
+                        layoutMenu();
+                    });
+                }
 
-});
+            });
 
-
-         
         });
 
         /*
-         * Wait until the browser has calculated
-         * the height of every box.
+         * Initial layout.
          */
         requestAnimationFrame(layoutMenu);
 
         /*
-         * Re-layout after fonts have loaded.
+         * Re-layout after fonts load.
          */
         if (document.fonts) {
             document.fonts.ready.then(layoutMenu);
         }
 
         /*
-         * Re-layout when the browser changes size.
+         * Re-layout when window changes size.
          */
         window.addEventListener("resize", layoutMenu);
 
@@ -1006,113 +1030,100 @@ title.addEventListener("click", function () {
     }
 
 
-function layoutMenu() {
+    function layoutMenu() {
 
-    const boxes = [
-        ...menuContainer.querySelectorAll(".menu-category")
-    ];
+        const boxes = [
+            ...menuContainer.querySelectorAll(
+                ".menu-category"
+            )
+        ];
 
-    if (!boxes.length) return;
+        if (!boxes.length) return;
 
-    /*
-     * MOBILE
-     * One column, top to bottom.
-     */
-    if (window.innerWidth <= 900) {
 
-        let y = 0;
+        /*
+         * ─────────────────────────────
+         * MOBILE
+         * ─────────────────────────────
+         *
+         * One column, top to bottom.
+         */
+        if (window.innerWidth <= 900) {
 
-        boxes.forEach(box => {
+            let y = 0;
+
+            boxes.forEach(box => {
+
+                box.style.position = "absolute";
+                box.style.width = "100%";
+                box.style.left = "0px";
+                box.style.top = y + "px";
+
+                y += box.offsetHeight + 16;
+            });
+
+            menuContainer.style.height =
+                Math.max(0, y - 16) + "px";
+
+            return;
+        }
+
+
+        /*
+         * ─────────────────────────────
+         * DESKTOP
+         * ─────────────────────────────
+         *
+         * Three independent columns.
+         */
+
+        const gap = 16;
+
+        const containerWidth =
+            menuContainer.clientWidth;
+
+        const columnWidth =
+            (containerWidth - gap * 2) / 3;
+
+        const columnHeights = [0, 0, 0];
+
+
+        boxes.forEach((box, index) => {
+
+            const column = index % 3;
+
+            const left =
+                column * (columnWidth + gap);
+
+            const top =
+                columnHeights[column];
 
             box.style.position = "absolute";
-            box.style.width = "100%";
-            box.style.left = "0px";
-            box.style.top = y + "px";
 
-            y += box.offsetHeight + 16;
+            box.style.width =
+                columnWidth + "px";
+
+            box.style.left =
+                left + "px";
+
+            box.style.top =
+                top + "px";
+
+            columnHeights[column] =
+                top + box.offsetHeight + gap;
+
         });
 
+
+        /*
+         * Set container height to tallest column.
+         */
+        const tallestColumn =
+            Math.max(...columnHeights);
+
         menuContainer.style.height =
-            Math.max(0, y - 16) + "px";
-
-        return;
+            Math.max(0, tallestColumn - gap) + "px";
     }
-
-
-    /*
-     * DESKTOP
-     * Three independent columns.
-     */
-
-    const gap = 16;
-
-    const containerWidth =
-        menuContainer.clientWidth;
-
-    const columnWidth =
-        (containerWidth - gap * 2) / 3;
-
-
-    /*
-     * Track the bottom of EACH column independently.
-     */
-    const columnHeights = [0, 0, 0];
-
-
-    boxes.forEach((box, index) => {
-
-        /*
-         * 1 → column 1
-         * 2 → column 2
-         * 3 → column 3
-         * 4 → column 1
-         * 5 → column 2
-         * 6 → column 3
-         */
-        const column = index % 3;
-
-
-        const left =
-            column * (columnWidth + gap);
-
-        const top =
-            columnHeights[column];
-
-
-        box.style.position = "absolute";
-
-        box.style.width =
-            columnWidth + "px";
-
-        box.style.left =
-            left + "px";
-
-        box.style.top =
-            top + "px";
-
-
-        /*
-         * IMPORTANT:
-         * The next box in THIS column
-         * starts immediately after this box.
-         */
-        columnHeights[column] =
-            top + box.offsetHeight + gap;
-
-    });
-
-
-    /*
-     * Set container height to the
-     * tallest column.
-     */
-    const tallestColumn =
-        Math.max(...columnHeights);
-
-    menuContainer.style.height =
-        Math.max(0, tallestColumn - gap) + "px";
-}
- 
 
 });
 </script>
