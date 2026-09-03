@@ -957,47 +957,39 @@ document.addEventListener("DOMContentLoaded", async function () {
              * Tap a category to open it.
              * Tapping another category closes the previous one.
              */
-            title.addEventListener("click", function () {
+title.addEventListener("click", function () {
+    if (window.innerWidth <= 900) {
+        const wasOpen = box.classList.contains("open");
 
-                if (window.innerWidth <= 900) {
+        const allBoxes =
+            menuContainer.querySelectorAll(".menu-category");
 
-                    const wasOpen =
-                        box.classList.contains("open");
+        // Close all categories
+        allBoxes.forEach(otherBox => {
+            otherBox.classList.remove("open");
+        });
 
-                    /*
-                     * Get all menu categories here.
-                     * This fixes the previous "boxes is not defined" error.
-                     */
-                    const allBoxes =
-                        menuContainer.querySelectorAll(
-                            ".menu-category"
-                        );
+        // Open the clicked category if it wasn't already open
+        if (!wasOpen) {
+            box.classList.add("open");
 
-                    /*
-                     * Close all categories.
-                     */
-                    allBoxes.forEach(otherBox => {
-                        otherBox.classList.remove("open");
+            // Wait for the menu to resize/reposition
+            requestAnimationFrame(() => {
+                layoutMenu();
+
+                // Scroll the opened category into view
+                setTimeout(() => {
+                    box.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
                     });
-
-                    /*
-                     * If the clicked category was closed,
-                     * open it.
-                     */
-                    if (!wasOpen) {
-                        box.classList.add("open");
-                    }
-
-                    /*
-                     * Recalculate positions and height.
-                     */
-                    requestAnimationFrame(function () {
-                        layoutMenu();
-                    });
-                }
-
+                }, 50);
             });
-
+        } else {
+            requestAnimationFrame(layoutMenu);
+        }
+    }
+});
         });
 
         /*
