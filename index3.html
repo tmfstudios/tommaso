@@ -1301,19 +1301,26 @@ if (hamburger) {
     /*
      * Close mobile navigation when a link is selected.
      */
-    navLinks.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", function () {
+navLinks.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", function () {
+
+        // Only close the mobile navigation on mobile
+        if (window.innerWidth <= 900) {
 
             hamburger.classList.remove("active");
+
             hamburger.setAttribute(
                 "aria-expanded",
                 "false"
             );
 
-            navLinks.style.display = "none";
-        });
+            navLinks.classList.remove("mobile-open");
+        }
+
     });
-} 
+
+});} 
 });
 </script>
 
