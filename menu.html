@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tommaso Brooklyn — Menu</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #f6f1e8;
+    color: #222;
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.page {
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 35px 80px;
+}
+
+/* 3 categories per row on desktop */
+#menu {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 60px 30px;
+}
+
+header {
+    text-align: center;
+    padding-bottom: 45px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 52px;
+    font-weight: normal;
+    letter-spacing: 3px;
+}
+
+.subtitle {
+    margin-top: 12px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #777;
+}
+
+.category {
+    margin-bottom: 0;
+}
+
+.category h2 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0 0 30px;
+}
+
+.category h2:after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 2px;
+    background: #222;
+    margin: 14px auto 0;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 22px 0;
+    border-bottom: 1px solid #d8d0c4;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-name {
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.description {
+    font-family: Arial, sans-serif;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.price {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.tags {
+    margin-top: 10px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 4px 8px;
+    margin-right: 5px;
+    background: #e5ddd0;
+    border-radius: 3px;
+    color: #555;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.photo {
+    width: 110px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.error {
+    text-align: center;
+    padding: 40px;
+    color: #a33;
+    font-family: Arial, sans-serif;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #d8d0c4;
+    color: #888;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* Mobile: 1 category per row */
+@media (max-width: 600px) {
+
+    .page {
+        padding: 35px 18px 60px;
+    }
+
+    #menu {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    header h1 {
+        font-size: 40px;
+    }
+
+    .category h2 {
+        font-size: 24px;
+    }
+
+    .item {
+        gap: 15px;
+    }
+
+    .item-name {
+        font-size: 18px;
+    }
+
+    .description {
+        font-size: 13px;
+    }
+
+    .price {
+        font-size: 16px;
+    }
+
+    .photo {
+        width: 80px;
+        height: 65px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+<header>
+    <h1>Tommaso</h1>
+    <div class="subtitle">Brooklyn · Menu</div>
+</header>
+
+<main id="menu">
+    Loading menu...
+</main>
+
+<footer>
+    Tommaso · Brooklyn
+</footer>
+
+</div>
+
+<script>
+
+const MENU_URL = "menu.json";
+
+async function loadMenu() {
+
+    const container = document.getElementById("menu");
+
+    try {
+
+        const response = await fetch(MENU_URL, {
+            cache: "no-store"
+        });
+
+        if (!response.ok) {
+            throw new Error(
+                "menu.json returned HTTP " + response.status
+            );
+        }
+
+        const menu = await response.json();
+
+        if (!menu.categories) {
+            throw new Error("No categories found in menu.json");
+        }
+
+        container.innerHTML = "";
+
+        menu.categories.forEach(category => {
+
+            const section = document.createElement("section");
+            section.className = "category";
+
+            const heading = document.createElement("h2");
+            heading.textContent = category.name;
+
+            section.appendChild(heading);
+
+            if (!category.items) {
+                return;
+            }
+
+            category.items.forEach(item => {
+
+                if (item.available === false) {
+                    return;
+                }
+
+                const row = document.createElement("div");
+                row.className = "item";
+
+                const info = document.createElement("div");
+                info.className = "item-info";
+
+                const name = document.createElement("div");
+                name.className = "item-name";
+                name.textContent = item.name;
+
+                info.appendChild(name);
+
+                if (item.description) {
+
+                    const description =
+                        document.createElement("div");
+
+                    description.className = "description";
+                    description.textContent = item.description;
+
+                    info.appendChild(description);
+                }
+
+                if (
+                    item.dietary_tags &&
+                    item.dietary_tags.length
+                ) {
+
+                    const tags =
+                        document.createElement("div");
+
+                    tags.className = "tags";
+
+                    item.dietary_tags.forEach(tag => {
+
+                        const badge =
+                            document.createElement("span");
+
+                        badge.className = "tag";
+                        badge.textContent = tag;
+
+                        tags.appendChild(badge);
+                    });
+
+                    info.appendChild(tags);
+                }
+
+                row.appendChild(info);
+
+                if (item.photo) {
+
+                    const image =
+                        document.createElement("img");
+
+                    image.className = "photo";
+                    image.src = item.photo;
+                    image.alt = item.name;
+                    image.loading = "lazy";
+
+                    row.appendChild(image);
+                }
+
+                const price =
+                    document.createElement("div");
+
+                price.className = "price";
+
+                price.textContent =
+                    "$" + Number(item.price).toFixed(2);
+
+                row.appendChild(price);
+
+                section.appendChild(row);
+            });
+
+            container.appendChild(section);
+        });
+
+    } catch (error) {
+
+        console.error("Menu error:", error);
+
+        container.innerHTML = `
+            <div class="error">
+                <strong>Unable to load menu.</strong>
+                <br><br>
+                Please check that menu.json is accessible.
+            </div>
+        `;
+    }
+}
+
+loadMenu();
+
+</script>
+
+</body>
+</html>
