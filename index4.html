@@ -2242,13 +2242,9 @@ document.addEventListener("DOMContentLoaded", async function () {
                 btn.addEventListener("click", () => {
                     selectCategory(i);
 
-                    // Phones: if the new card starts above the pinned bars, bring it into view
+                    // Phones: every time a category is picked, scroll so its dishes start right under the pinned pills
                     if (isMobile()) {
-                        requestAnimationFrame(() => {
-                            const box = records[i].box;
-                            const limit = navHeightWhenShrunk() + tabsEl.offsetHeight;
-                            if (box.getBoundingClientRect().top < limit + 8) scrollToBox(box, 16);
-                        });
+                        requestAnimationFrame(() => scrollToBox(records[i].box, 16));
                     }
                 });
                 tabsEl.appendChild(btn);
