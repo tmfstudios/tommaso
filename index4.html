@@ -1683,14 +1683,14 @@
   .nav-status.is-closed { color: #C0392B; }
 
   /* ─── MENU (MOBILE): one category at a time, chosen with the pills ─── */
+  @keyframes menuFade { from { opacity: 0; } to { opacity: 1; } }
+
   .menu-tab.active { background: var(--gold); border-color: var(--gold); color: var(--espresso); }
 
   @media (max-width: 900px) {
     #menu .menu-grid .menu-category { display: none; }
-    #menu .menu-grid .menu-category.active {
-      display: block;
-      animation: menuRise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-    }
+    /* fade only (no sliding): a sliding card is measured 28px low, so the scroll would land short */
+    #menu .menu-grid .menu-category.active { display: block; animation: menuFade 0.45s ease both; }
     #menu .menu-grid .menu-cat-title { cursor: default; padding-right: 0; margin-bottom: 1.5rem; }
     #menu .menu-grid .menu-cat-title::after { content: none; }
     #menu .menu-grid .menu-category .menu-items { display: block; margin-top: 0; }
