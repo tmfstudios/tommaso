@@ -1125,13 +1125,18 @@
     grid-area: 1 / 1;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.8s ease, visibility 0.8s;
+    /* leaving: fade out quickly, then hide */
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
     display: flex; flex-direction: column;
     align-items: center; justify-content: center;
     gap: 1rem;
   }
 
-  .review-card.active { opacity: 1; visibility: visible; }
+  /* arriving: wait for the previous review to finish leaving, then fade in */
+  .review-card.active {
+    opacity: 1; visibility: visible;
+    transition: opacity 0.5s ease 0.4s, visibility 0s;
+  }
 
   .story-card-main .review-text {
     font-family: 'Cormorant Garamond', serif;
@@ -2447,9 +2452,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         function goTo(index) {
             const slides = carousel.querySelectorAll(".review-card");
             const dots = dotsContainer.querySelectorAll(".slideshow-dot");
-            slides[current].classList.remove("active", "expanded");
-            const leftMore = slides[current].querySelector(".review-more");
-            if (leftMore) leftMore.textContent = "Read more";
+            const leaving = slides[current];
+            leaving.classList.remove("active");
+            // collapse only after it has faded out, so the text doesn't visibly snap shut mid-fade
+            setTimeout(() => {
+                if (leaving.classList.contains("active")) return;
+                leaving.classList.remove("expanded");
+                const leftMore = leaving.querySelector(".review-more");
+                if (leftMore) leftMore.textContent = "Read more";
+            }, 500);
             dots[current].classList.remove("active");
             current = (index + reviews.length) % reviews.length;
             slides[current].classList.add("active");
