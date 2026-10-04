@@ -1701,6 +1701,14 @@
     #menu .menu-grid .menu-category .menu-items { display: block; margin-top: 0; }
   }
 
+  /* no square flash when tapping the pills and other custom buttons on phones */
+  .menu-tab, .menu-thumb, .hero-more, .review-more,
+  .slideshow-btn, .slideshow-dot, .lb-close {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .menu-tab:active { transform: scale(0.97); }
+
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
