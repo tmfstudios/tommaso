@@ -1709,6 +1709,11 @@
   }
   .menu-tab:active { transform: scale(0.97); }
 
+  /* phones: plain light background behind the hero (the faded painting starts below it, in the story section) */
+  @media (max-width: 900px) {
+    .hero { background: var(--cream); }
+  }
+
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
