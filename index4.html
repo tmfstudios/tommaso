@@ -2949,6 +2949,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     /* ── Nav shrinks gradually with scroll (0 → 1 over the first 160px) ── */
     const navBar = document.querySelector("nav");
     const menuEl = document.getElementById("menu");
+    const resEl = document.getElementById("reservations");
+    const sendEl = document.getElementById("res-submit");
     const SHRINK_RANGE = 160;
     let navTicking = false;
 
@@ -2963,8 +2965,21 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (menuEl) {
             const end = menuEl.getBoundingClientRect().top + window.scrollY - navBar.offsetHeight;
             const prog = end > 0 ? Math.min(1, Math.max(0, window.scrollY / end)) : 1;
-            const o = Math.min(1, Math.max(0, (prog - 0.4) / 0.6));
-            navBar.style.setProperty("--hours-o", o.toFixed(3));
+            const fadeIn = Math.min(1, Math.max(0, (prog - 0.4) / 0.6));
+
+            // ...and fade back out through the reservations section, gone by the Send Request button
+            let fadeOut = 1;
+            if (resEl) {
+                const start = resEl.getBoundingClientRect().top + window.scrollY - navBar.offsetHeight;
+                const endEl = (sendEl && sendEl.offsetParent) ? sendEl : null;   // hidden after a successful send
+                const endY = endEl
+                    ? endEl.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.6
+                    : resEl.getBoundingClientRect().bottom + window.scrollY - window.innerHeight;
+                if (endY > start) fadeOut = 1 - Math.min(1, Math.max(0, (window.scrollY - start) / (endY - start)));
+                else if (window.scrollY >= endY) fadeOut = 0;
+            }
+
+            navBar.style.setProperty("--hours-o", (fadeIn * fadeOut).toFixed(3));
         }
     }
 
