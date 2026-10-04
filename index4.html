@@ -1678,6 +1678,18 @@
     }
   }
 
+  /* open / closed indicator under the hours */
+  .nav-status {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    margin-top: 0.2rem;
+    font-weight: 600;
+  }
+  .nav-status[hidden] { display: none; }
+  .nav-status b { font-weight: 600; }
+  .nav-status i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .nav-status.is-open   { color: #1E8E4E; }
+  .nav-status.is-closed { color: #C0392B; }
+
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
@@ -1730,6 +1742,7 @@
   <div class="nav-hours" aria-label="Hours">
     <span>Tue&ndash;Sat 12&ndash;10pm</span>
     <span>Sun 12&ndash;9pm</span>
+    <span class="nav-status" id="nav-status" hidden><i aria-hidden="true"></i><b></b></span>
   </div>
 
   <div class="nav-mobile-buttons" style="display:none !important;"></div>
@@ -2876,6 +2889,36 @@ document.addEventListener("DOMContentLoaded", async function () {
         window.addEventListener("load", sync);
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
         sync();
+    })();
+
+    /* ─── OPEN / CLOSED indicator (restaurant time, New York) ─── */
+    (function initOpenStatus() {
+        const el = document.getElementById("nav-status");
+        if (!el) return;
+        const label = el.querySelector("b");
+
+        // Opening hours in minutes after midnight: Tue–Sat 12–10pm, Sun 12–9pm, Mon closed
+        const HOURS = { Sun: [720, 1260], Tue: [720, 1320], Wed: [720, 1320], Thu: [720, 1320], Fri: [720, 1320], Sat: [720, 1320] };
+
+        function update() {
+            const parts = new Intl.DateTimeFormat("en-US", {
+                timeZone: "America/New_York", weekday: "short", hour: "numeric", minute: "numeric", hour12: false
+            }).formatToParts(new Date());
+            const get = t => (parts.find(p => p.type === t) || {}).value;
+            const day = get("weekday");
+            const mins = (parseInt(get("hour"), 10) % 24) * 60 + parseInt(get("minute"), 10);
+            const h = HOURS[day];
+            const open = !!h && mins >= h[0] && mins < h[1];
+
+            label.textContent = open ? "Open" : "Closed";
+            el.classList.toggle("is-open", open);
+            el.classList.toggle("is-closed", !open);
+            el.hidden = false;
+        }
+
+        update();
+        setInterval(update, 60000);
+        document.addEventListener("visibilitychange", () => { if (!document.hidden) update(); });
     })();
 
     /* ─── DIRECTIONS LINKS: open the visitor's own maps app ─── */
