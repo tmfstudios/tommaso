@@ -1550,14 +1550,6 @@
     box-shadow: 0 0 0 1px var(--gold), 0 0 28px rgba(106,172,212,0.35);
   }
 
-  @media (max-width: 900px) {
-    .menu-category.reveal { opacity: 0; }
-    .menu-category.reveal.in-view {
-      opacity: 1;
-      animation: menuRise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-      animation-delay: var(--rise-delay, 0ms);
-    }
-  }
 
   /* ─── MENU (MOBILE): dish photo thumbnails + tap-to-enlarge ─── */
   .menu-thumb { display: none; }
@@ -1689,6 +1681,20 @@
   .nav-status i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
   .nav-status.is-open   { color: #1E8E4E; }
   .nav-status.is-closed { color: #C0392B; }
+
+  /* ─── MENU (MOBILE): one category at a time, chosen with the pills ─── */
+  .menu-tab.active { background: var(--gold); border-color: var(--gold); color: var(--espresso); }
+
+  @media (max-width: 900px) {
+    #menu .menu-grid .menu-category { display: none; }
+    #menu .menu-grid .menu-category.active {
+      display: block;
+      animation: menuRise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    #menu .menu-grid .menu-cat-title { cursor: default; padding-right: 0; margin-bottom: 1.5rem; }
+    #menu .menu-grid .menu-cat-title::after { content: none; }
+    #menu .menu-grid .menu-category .menu-items { display: block; margin-top: 0; }
+  }
 
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
@@ -2086,8 +2092,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
         const isMobile = () => window.innerWidth <= 900;
-        const revealEnabled = "IntersectionObserver" in window &&
-            !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         /* ── Photo stage (right 70%) ── */
         const stage = document.createElement("figure");
@@ -2132,22 +2136,10 @@ document.addEventListener("DOMContentLoaded", async function () {
         categories.forEach(category => {
             const box = document.createElement("div");
             box.className = "menu-category";
-            if (revealEnabled) box.classList.add("reveal"); // fade-in only applies on mobile
 
             const title = document.createElement("h3");
             title.className = "menu-cat-title";
             title.textContent = category.name || "";
-
-            // Mobile accordion: tap a title to open it (closes the others)
-            title.addEventListener("click", () => {
-                if (!isMobile()) return;
-                const wasOpen = box.classList.contains("open");
-                menuContainer.querySelectorAll(".menu-category").forEach(b => b.classList.remove("open"));
-                if (!wasOpen) {
-                    box.classList.add("open");
-                    setTimeout(() => scrollToBox(box, 15), 50);
-                }
-            });
 
             const list = document.createElement("ul");
             list.className = "menu-items";
@@ -2222,19 +2214,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         menuContainer.appendChild(stage);
 
-        // Mobile: cards fade in one after another as they scroll into view
-        if (revealEnabled) {
-            const io = new IntersectionObserver(entries => {
-                let n = 0;
-                entries.filter(e => e.isIntersecting).forEach(entry => {
-                    entry.target.style.setProperty("--rise-delay", (n++ * 110) + "ms");
-                    entry.target.classList.add("in-view");
-                    io.unobserve(entry.target);
-                });
-            }, { threshold: 0.05, rootMargin: "0px 0px -6% 0px" });
-            records.forEach(r => io.observe(r.box));
-        }
-
         function activateItem(entry) {
             menuContainer.querySelectorAll(".menu-item.active").forEach(el => el.classList.remove("active"));
             entry.li.classList.add("active");
@@ -2261,15 +2240,16 @@ document.addEventListener("DOMContentLoaded", async function () {
                 btn.className = "menu-tab";
                 btn.textContent = category.name || "";
                 btn.addEventListener("click", () => {
-                    // Desktop: switch the visible card
-                    if (!isMobile()) { selectCategory(i); return; }
+                    selectCategory(i);
 
-                    // Mobile: open that accordion section and scroll to it
-                    const box = records[i].box;
-                    box.classList.add("flash");
-                    setTimeout(() => box.classList.remove("flash"), 1500);
-                    if (!box.classList.contains("open")) box.querySelector(".menu-cat-title").click();
-                    else scrollToBox(box, 16);
+                    // Phones: if the new card starts above the pinned bars, bring it into view
+                    if (isMobile()) {
+                        requestAnimationFrame(() => {
+                            const box = records[i].box;
+                            const limit = navHeightWhenShrunk() + tabsEl.offsetHeight;
+                            if (box.getBoundingClientRect().top < limit + 8) scrollToBox(box, 16);
+                        });
+                    }
                 });
                 tabsEl.appendChild(btn);
                 tabs.push(btn);
