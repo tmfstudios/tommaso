@@ -849,9 +849,10 @@
     .hero-text { display: contents; }
     .hero > .hero-text > * { grid-column: 1; margin-left: 1.5rem; margin-right: 1rem; }
     .hero > .hero-text > .hero-eyebrow,
-    .hero > .hero-text > .hero-title { grid-column: 1 / -1; margin-right: 1.5rem; }
-    .hero-eyebrow { margin-top: 2.5rem; }
-    .hero-title { font-size: clamp(2.4rem, 11vw, 3.4rem); }
+    .hero > .hero-text > .hero-title { grid-column: 1 / -1; margin-left: 1rem; margin-right: 1rem; }
+    .hero-eyebrow { margin-top: 2.5rem; text-align: right; }
+    /* headline scales with the screen so its longest line runs edge to edge */
+    .hero-title { font-size: clamp(2.6rem, 13vw, 5rem); line-height: 1.02; }
     .hero-subtitle {
       font-size: 0.95rem; max-width: none; margin-bottom: 0.5rem;
       display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 6; overflow: hidden;
