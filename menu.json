@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-22T03:37:21+00:00",
+    "generated_at": "2026-10-04T16:16:40+00:00",
     "categories": [
         {
             "id": 1,
@@ -308,41 +308,32 @@
             ]
         },
         {
-            "id": 7,
-            "name": "Sauetéed Vegetables",
+            "id": 5,
+            "name": "Beef",
             "items": [
                 {
-                    "id": 40,
-                    "name": "Broccoli Rabe",
-                    "description": "",
-                    "price": 12,
+                    "id": 20,
+                    "name": "Sausage",
+                    "description": "hot and sweet, broccoli rabe",
+                    "price": 26,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
                 },
                 {
-                    "id": 41,
-                    "name": "Spinach",
-                    "description": "",
-                    "price": 12,
+                    "id": 32,
+                    "name": "Short Ribs",
+                    "description": "braised, mashed potatoes",
+                    "price": 30,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
                 },
                 {
-                    "id": 42,
-                    "name": "Escarole",
-                    "description": "",
-                    "price": 12,
-                    "photo": null,
-                    "dietary_tags": [],
-                    "available": true
-                },
-                {
-                    "id": 43,
-                    "name": "Eggplant Parmigiana",
-                    "description": "served with spaghetti",
-                    "price": 22,
+                    "id": 33,
+                    "name": "Ribeye Steak",
+                    "description": "topped with mushrooms & onions, potato croquette",
+                    "price": 36,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
@@ -410,32 +401,41 @@
             ]
         },
         {
-            "id": 5,
-            "name": "Beef",
+            "id": 7,
+            "name": "Sauetéed Vegetables",
             "items": [
                 {
-                    "id": 20,
-                    "name": "Sausage",
-                    "description": "hot and sweet, broccoli rabe",
-                    "price": 26,
+                    "id": 40,
+                    "name": "Broccoli Rabe",
+                    "description": "",
+                    "price": 12,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
                 },
                 {
-                    "id": 32,
-                    "name": "Short Ribs",
-                    "description": "braised, mashed potatoes",
-                    "price": 30,
+                    "id": 41,
+                    "name": "Spinach",
+                    "description": "",
+                    "price": 12,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
                 },
                 {
-                    "id": 33,
-                    "name": "Ribeye Steak",
-                    "description": "topped with mushrooms & onions, potato croquette",
-                    "price": 36,
+                    "id": 42,
+                    "name": "Escarole",
+                    "description": "",
+                    "price": 12,
+                    "photo": null,
+                    "dietary_tags": [],
+                    "available": true
+                },
+                {
+                    "id": 43,
+                    "name": "Eggplant Parmigiana",
+                    "description": "served with spaghetti",
+                    "price": 22,
                     "photo": null,
                     "dietary_tags": [],
                     "available": true
